@@ -1,0 +1,118 @@
+{
+  "updated": "2026-11-19T23:30:00+01:00",
+  "updated_label": "Thu 19 Nov 2026, 23:30 CET",
+  "sources": "YouTube Data API and Instagram Graph API (live pull), campaigns/*/posts.md, CLAUDE.md, daily/task.md",
+
+  "channels": [
+    {
+      "key": "bobelly",
+      "name": "Bobelly",
+      "platform": "YouTube",
+      "handle": "@bobelly111",
+      "url": "https://www.youtube.com/@bobelly111/shorts",
+      "created": "2026-11-13",
+      "streamers": ["Lacy", "Clix", "Tomo"],
+      "subscribers": 0,
+      "posts": 9,
+      "stage": 1,
+      "limit": "3 Shorts a day, 2 per run, 2 h apart",
+      "note": "3 early Shorts carried it; the 6 later ones are stuck under 10 views."
+    },
+    {
+      "key": "deanmor",
+      "name": "dean mor",
+      "platform": "YouTube",
+      "handle": "@deanmor-z6b",
+      "url": "https://www.youtube.com/@deanmor-z6b/shorts",
+      "created": "2026-11-18",
+      "streamers": ["Kai Cenat", "YourRAGE"],
+      "subscribers": 0,
+      "posts": 1,
+      "stage": 0,
+      "limit": "1 Short a day until 26 Nov, then 2",
+      "note": "Day 2. Kept light on purpose so YouTube trusts the channel."
+    },
+    {
+      "key": "ig-deanmor",
+      "name": "@deanmor93",
+      "platform": "Instagram",
+      "handle": "@deanmor93",
+      "url": "https://www.instagram.com/deanmor93/",
+      "created": "2026-11-18",
+      "streamers": ["Kai Cenat", "YourRAGE"],
+      "subscribers": null,
+      "posts": 1,
+      "stage": 0,
+      "limit": "1 Reel a day until 26 Nov, then 2",
+      "note": "Same edit as the dean mor Short. Got 45x the views of the YouTube copy."
+    },
+    {
+      "key": "ig-bobelly",
+      "name": "@bobelly11",
+      "platform": "Instagram",
+      "handle": "@bobelly11",
+      "url": "https://www.instagram.com/bobelly11/",
+      "created": "2026-11-19",
+      "streamers": [],
+      "subscribers": null,
+      "posts": 0,
+      "stage": -1,
+      "limit": "Not in the plan yet",
+      "note": "Connected to Composio tonight (19 Nov). No posts, no rules yet."
+    }
+  ],
+
+  "stages": [
+    { "n": 0, "name": "Warm-up", "goal": "New account. Post little and clean so the platform trusts it." },
+    { "n": 1, "name": "Seeding", "goal": "First 20 posts. Find the hook and edit that gets pushed." },
+    { "n": 2, "name": "Traction", "goal": "One post over 10K views, and most posts over 500." },
+    { "n": 3, "name": "Pool-ready", "goal": "On pace to clear a pool minimum (Lacy 1M, Clix 400K)." },
+    { "n": 4, "name": "Partner", "goal": "YouTube Partner: 1,000 subs + 10M Shorts views in 90 days." }
+  ],
+
+  "posts": [
+    { "id": "4UFHVr5GTrQ", "channel": "bobelly", "platform": "YouTube", "title": "GTA 6 goes live in 30 seconds… LACY's reaction after 13 years", "streamer": "Lacy", "campaign": "lacy-gta6", "posted": "2026-11-18T19:08:37+01:00", "secs": 29, "views": 1225, "likes": 23, "comments": 1, "submitted": "no record", "url": "https://youtube.com/shorts/4UFHVr5GTrQ" },
+    { "id": "3ClC6vYnx4s", "channel": "bobelly", "platform": "YouTube", "title": "LACY sees Lucia in GTA 6 for the first time", "streamer": "Lacy", "campaign": "lacy-gta6", "posted": "2026-11-18T19:21:16+01:00", "secs": 23, "views": 842, "likes": 14, "comments": 0, "submitted": "no record", "url": "https://youtube.com/shorts/3ClC6vYnx4s" },
+    { "id": "0t21PyyKFw4", "channel": "bobelly", "platform": "YouTube", "title": "LACY watches GTA 6 go live after 13 years", "streamer": "Lacy", "campaign": "lacy-gta6", "posted": "2026-11-18T20:06:17+01:00", "secs": 32, "views": 755, "likes": 5, "comments": 0, "submitted": "no record", "url": "https://youtube.com/shorts/0t21PyyKFw4" },
+    { "id": "ty4zlkYU8ak", "channel": "bobelly", "platform": "YouTube", "title": "Lacy's first robbery in GTA 6", "streamer": "Lacy", "campaign": "lacy-gta6", "posted": "2026-11-18T22:00:12+01:00", "secs": 28, "views": 5, "likes": 1, "comments": 0, "submitted": "no record", "url": "https://youtube.com/shorts/ty4zlkYU8ak" },
+    { "id": "hHFgcB1Q74M", "channel": "bobelly", "platform": "YouTube", "title": "GTA 6 makes Lacy clone car keys", "streamer": "Lacy", "campaign": "lacy-gta6", "posted": "2026-11-18T22:00:14+01:00", "secs": 16, "views": 7, "likes": 1, "comments": 0, "submitted": "no record", "url": "https://youtube.com/shorts/hHFgcB1Q74M" },
+    { "id": "Svn4DG4tjJs", "channel": "bobelly", "platform": "YouTube", "title": "Clix tries to land a plane in GTA 6", "streamer": "Clix", "campaign": "clix-gta6", "posted": "2026-11-18T22:51:33+01:00", "secs": 22, "views": 4, "likes": 1, "comments": 0, "submitted": "18 Nov", "url": "https://youtube.com/shorts/Svn4DG4tjJs" },
+    { "id": "NHvO2oAKTdM", "channel": "bobelly", "platform": "YouTube", "title": "Lacy flips the car and Lucia gets arrested in GTA 6", "streamer": "Lacy", "campaign": "lacy-gta6", "posted": "2026-11-18T22:52:16+01:00", "secs": 31, "views": 4, "likes": 1, "comments": 0, "submitted": "18 Nov", "url": "https://youtube.com/shorts/NHvO2oAKTdM" },
+    { "id": "9rSNTjj_eaI", "channel": "bobelly", "platform": "YouTube", "title": "Lacy just wanted to keep the dog in GTA 6", "streamer": "Lacy", "campaign": "lacy-gta6", "posted": "2026-11-18T22:59:09+01:00", "secs": 48, "views": 4, "likes": 1, "comments": 0, "submitted": "18 Nov", "url": "https://youtube.com/shorts/9rSNTjj_eaI" },
+    { "id": "uu6P0ede9Yo", "channel": "bobelly", "platform": "YouTube", "title": "Clix gets jumped by club bouncers in GTA 6", "streamer": "Clix", "campaign": "clix-gta6", "posted": "2026-11-18T23:42:36+01:00", "secs": 41, "views": 1, "likes": 1, "comments": 0, "submitted": "18 Nov 23:53", "url": "https://youtube.com/shorts/uu6P0ede9Yo" },
+    { "id": "CnkeTtyNlB4", "channel": "deanmor", "platform": "YouTube", "title": "Kai Cenat's first stick-up in GTA 6", "streamer": "Kai Cenat", "campaign": "kai-cenat-gta6", "posted": "2026-11-19T00:16:49+01:00", "secs": 36, "views": 3, "likes": 2, "comments": 0, "submitted": "19 Nov 00:18", "url": "https://youtube.com/shorts/CnkeTtyNlB4" },
+    { "id": "Df5rS4vgQnX", "thumb": "CnkeTtyNlB4", "channel": "ig-deanmor", "platform": "Instagram", "title": "Kai Cenat pulls his first stick-up in GTA 6 (Reel)", "streamer": "Kai Cenat", "campaign": "kai-cenat-gta6", "posted": "2026-11-19T00:23:23+01:00", "secs": 36, "views": 135, "reach": 108, "likes": 2, "comments": 0, "submitted": "19 Nov 00:25", "url": "https://www.instagram.com/reel/Df5rS4vgQnX/" }
+  ],
+
+  "gone": [
+    { "id": "9dVn_xNOA7U", "title": "Clix plays GTA 6 before everyone else", "why": "Failed YouTube processing (bad pixel aspect). No longer on the channel. Source clip had nude NPCs, so it stays dropped." }
+  ],
+
+  "campaigns": [
+    { "slug": "lacy-gta6", "name": "LACY GTA VI marathon", "agency": "Reach", "kind": "pool", "pay": "Share of $12,500", "min_views": 1000000, "channel": "Bobelly", "tag": "#LACY", "status": "live" },
+    { "slug": "clix-gta6", "name": "Clix GTA VI marathon", "agency": "Reach", "kind": "pool", "pay": "Share of $5,000", "min_views": 400000, "channel": "Bobelly", "tag": "#Clix", "status": "live" },
+    { "slug": "kai-cenat-gta6", "name": "Kai Cenat GTA 6", "agency": "Clipped & Shipped", "kind": "pool", "pay": "Share of $10,000", "min_views": 750000, "channel": "dean mor + IG", "tag": "#KaiCenat", "status": "live" },
+    { "slug": "yourrage-gta6", "name": "YourRAGE GTA 6", "agency": "Reach", "kind": "pool", "pay": "Share of $5,000", "min_views": 500000, "channel": "dean mor + IG", "tag": "#yourrage", "status": "no posts yet" },
+    { "slug": "tomo-gta6", "name": "TOMO GTA VI", "agency": "Clipping Nation", "kind": "cpm", "pay": "$2.00 / 1K views, max $150 a clip", "budget": "$1,000 total, drains fast", "channel": "Bobelly", "tag": "", "status": "no posts yet" },
+    { "slug": "sypherpk", "name": "SypherPK (Fortnite)", "agency": "Reach", "kind": "cpm", "pay": "$2.00 / 1K, $20 min, $500 max", "budget": "$7,427 of $7,500 left", "channel": "", "tag": "#fortnitecreative #uefn", "status": "no posts yet", "limit": "15 Nov VODs only" },
+    { "slug": "expedia-ishowspeed", "name": "Expedia x IShowSpeed", "agency": "Reach", "kind": "cpm", "pay": "$1.00 / 1K, $10 min, $500 max", "budget": "$7,455 of $8,000 left", "channel": "", "tag": "#IShowSpeed", "status": "no posts yet", "limit": "6 Nov stream only, must name Expedia" },
+    { "slug": "dasgasd3m-gta6", "name": "Dasgasd3m x Ruckus GTA 6", "agency": "Ruckus", "kind": "cpm", "pay": "$1.00 / 1K, $10 min, $100 max", "budget": "$1,000, none used", "channel": "", "tag": "#dasgasdom3", "status": "no posts yet", "limit": "18 Nov Kick stream only, closes 19 Dec" }
+  ],
+
+  "queue": [
+    { "file": "clix_robhouse_short.mp4", "title": "Clix tries to rob a house in GTA 6", "campaign": "clix-gta6", "channel": "Bobelly", "moment": "18 Nov", "state": "Rendered and checked. Waiting since the YouTube daily limit on 18 Nov." },
+    { "file": "clix_shootout_short.mp4", "title": "Clix thinks he is about to die in GTA 6", "campaign": "clix-gta6", "channel": "Bobelly", "moment": "18 Nov", "state": "Rendered and checked. Waiting since the YouTube daily limit on 18 Nov." },
+    { "file": "Lacy phone app clip", "title": "GTA 6's phone shows everything about people", "campaign": "lacy-gta6", "channel": "Bobelly", "moment": "18 Nov", "state": "On hold: a woman in a bikini is on screen the whole clip. Your call." }
+  ],
+
+  "runs": { "times": ["16:30", "23:00"], "tz": "CET", "ny": ["10:30", "17:00"] },
+
+  "todo": [
+    { "what": "Tick \"includes paid promotion\" in YouTube Studio", "detail": "All 10 live Shorts still show no paid promotion (checked via the API tonight). Bobelly: 4UFHVr5GTrQ, 3ClC6vYnx4s, 0t21PyyKFw4, ty4zlkYU8ak, hHFgcB1Q74M, Svn4DG4tjJs, NHvO2oAKTdM, 9rSNTjj_eaI, uu6P0ede9Yo. dean mor: CnkeTtyNlB4.", "level": "high" },
+    { "what": "Look at why 6 Bobelly Shorts are stuck under 10 views", "detail": "In Studio, open one (e.g. ty4zlkYU8ak) and check for a copyright claim, \"limited\" status, or zero Shorts-feed impressions. The daily run's own rule (under 50 views after 6 h) says to stop posting on Bobelly until this is understood.", "level": "high" },
+    { "what": "Turn on the Paid partnership label on the Instagram Reel", "detail": "The API can't set it. Reel: instagram.com/reel/Df5rS4vgQnX", "level": "mid" },
+    { "what": "Decide on the Lacy phone clip", "detail": "Rendered, scored ~78, on hold because of the bikini shot. Post or drop.", "level": "low" },
+    { "what": "Tell me what @bobelly11 on Instagram is for", "detail": "It was connected tonight. Should it mirror Bobelly's Lacy/Clix Shorts as Reels, like @deanmor93 does for dean mor?", "level": "low" },
+    { "what": "Pick music tracks Bobelly has rights to", "detail": "Clips go out with voice and sound effects only until then.", "level": "low" }
+  ]
+}
