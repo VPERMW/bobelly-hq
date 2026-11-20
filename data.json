@@ -97,12 +97,16 @@
       "handle": "@bobelly11",
       "url": "https://www.instagram.com/bobelly11/",
       "created": "2026-11-19",
-      "streamers": [],
+      "streamers": [
+        "Lacy",
+        "Clix",
+        "Tomo"
+      ],
       "subscribers": null,
       "posts": 0,
-      "stage": -1,
-      "limit": "Not in the plan yet",
-      "note": "Connected to Composio tonight (19 Nov). No posts, no rules yet."
+      "stage": 0,
+      "limit": "Same edit as Bobelly's Short, max 1 Reel/day until 27 Nov",
+      "note": "Bobelly's twin since 20 Nov. Not linked in Content Rewards yet."
     },
     {
       "key": "ig-mako",
@@ -535,14 +539,14 @@
       "level": "mid"
     },
     {
-      "what": "Tell me what @bobelly11 on Instagram is for",
-      "detail": "It was connected tonight. Should it mirror Bobelly's Lacy/Clix Shorts as Reels, like @deanmor93 does for dean mor?",
-      "level": "low"
-    },
-    {
       "what": "Pick music tracks Bobelly has rights to",
       "detail": "Clips go out with voice and sound effects only until then.",
       "level": "low"
+    },
+    {
+      "what": "Link @bobelly11 in Content Rewards",
+      "detail": "Settings -> Accounts. Until then its Reels can't be submitted to campaigns.",
+      "level": "mid"
     }
   ]
 }
