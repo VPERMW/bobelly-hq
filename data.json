@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-20T09:40:00+01:00",
-  "updated_label": "Fri 20 Nov 2026, 09:40 CET",
+  "updated": "2026-11-20T15:55:04+01:00",
+  "updated_label": "Fri 20 Nov 2026, 15:55 CET",
   "sources": "YouTube Data API and Instagram Graph API (live pull), Postiz (TikTok), campaigns/*/posts.md, CLAUDE.md, daily/task.md",
   "channels": [
     {
@@ -142,7 +142,7 @@
       "campaign": "lacy-gta6",
       "posted": "2026-11-18T19:08:37+01:00",
       "secs": 29,
-      "views": 1227,
+      "views": 1228,
       "likes": 23,
       "comments": 1,
       "submitted": "no record",
@@ -293,7 +293,7 @@
       "campaign": "kai-cenat-gta6",
       "posted": "2026-11-19T00:23:23+01:00",
       "secs": 36,
-      "views": 135,
+      "views": 136,
       "reach": 108,
       "likes": 2,
       "comments": 0,
@@ -329,7 +329,7 @@
       "likes": 0,
       "comments": 0,
       "submitted": "unpaid",
-      "url": "https://www.tiktok.com/@bobelly111"
+      "url": "https://www.tiktok.com/@bobelly111/video/7710024847178452257"
     },
     {
       "id": "tt-7710025109297448993",
@@ -345,7 +345,7 @@
       "likes": 0,
       "comments": 0,
       "submitted": "unpaid",
-      "url": "https://www.tiktok.com/@dean.mor92"
+      "url": "https://www.tiktok.com/@dean.mor92/video/7710025652002475296"
     },
     {
       "id": "Df8Pb15j4Ma",
@@ -357,8 +357,8 @@
       "campaign": "unpaid",
       "posted": "2026-11-20T00:17:57+01:00",
       "secs": 16,
-      "views": 144,
-      "reach": 111,
+      "views": 145,
+      "reach": 112,
       "likes": 0,
       "comments": 0,
       "submitted": "unpaid",
