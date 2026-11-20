@@ -19,7 +19,7 @@
       "posts": 10,
       "stage": 1,
       "limit": "3 Shorts a day, 2 per run, 2 h apart",
-      "note": "3 early Shorts carried it; the 7 since are stuck under 10 views, including the unpaid Lacy alligator clip from 00:13 today."
+      "note": "Studio check 20 Nov: no claims or restrictions. The launch clips got 94% of views from the Shorts feed; the 18 Nov burst got 0% from the feed. Now 1 clip a day, 2 h apart, strong first frame."
     },
     {
       "key": "deanmor",
@@ -496,11 +496,6 @@
     {
       "what": "Tick \"includes paid promotion\" in YouTube Studio",
       "detail": "All 10 live Shorts still show no paid promotion (checked via the API tonight). Bobelly: 4UFHVr5GTrQ, 3ClC6vYnx4s, 0t21PyyKFw4, ty4zlkYU8ak, hHFgcB1Q74M, Svn4DG4tjJs, NHvO2oAKTdM, 9rSNTjj_eaI, uu6P0ede9Yo. dean mor: CnkeTtyNlB4.",
-      "level": "high"
-    },
-    {
-      "what": "Look at why 6 Bobelly Shorts are stuck under 10 views",
-      "detail": "In Studio, open one (e.g. ty4zlkYU8ak) and check for a copyright claim, \"limited\" status, or zero Shorts-feed impressions. The daily run's own rule (under 50 views after 6 h) says to stop posting on Bobelly until this is understood.",
       "level": "high"
     },
     {
