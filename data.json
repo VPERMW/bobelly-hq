@@ -510,6 +510,11 @@
  },
  "todo": [
   {
+   "what": "Add channels (21 Nov)",
+   "detail": "Make the GTA 6 Instagram (Tomo + Dasgasd3m) in the Instagram app, not Chrome, with the second iCloud address. Then log it in on Chrome and tell Claude to set it up (picture, bio, creator account, Composio, Content Rewards).",
+   "level": "mid"
+  },
+  {
    "what": "Tick \"includes paid promotion\" in YouTube Studio",
    "detail": "All 10 live Shorts still show no paid promotion (checked via the API tonight). Bobelly: 4UFHVr5GTrQ, 3ClC6vYnx4s, 0t21PyyKFw4, ty4zlkYU8ak, hHFgcB1Q74M, Svn4DG4tjJs, NHvO2oAKTdM, 9rSNTjj_eaI, uu6P0ede9Yo. dean mor: CnkeTtyNlB4.",
    "level": "high"
