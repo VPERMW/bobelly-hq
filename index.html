@@ -4,491 +4,687 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bobelly HQ</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <style>
-/* Bobelly HQ: quiet and plain. Masthead, tabs, a stats row, then the sections.
-   Greys with one muted orange, used only for what needs Jakob (stale soon, stalled, not submitted). */
+/* Bobelly HQ: a small control room. Sidebar + one view at a time (hash routes).
+   Platform colours are fixed site-wide (YouTube blue, Instagram orange, TikTok aqua, validated
+   for colour-blind safety in both themes). Red is reserved for "needs you" and always has a label. */
 :root {
-  --bg: #eff0ee;
-  --surface: #ffffff;
-  --sunk: #e6e7e4;
-  --ink: #141517;
-  --muted: #5f636a;
-  --line: #d4d6d2;
-  --accent: #e2662e;
-  --accent-ink: #b44a16;
-  --accent-soft: #f8ebe4;
-  --band: var(--surface);
-  --band-ink: var(--ink);
-  --band-muted: var(--muted);
-  --band-line: var(--line);
-  --good: var(--ink); --good-soft: var(--sunk);
-  --warn: var(--accent-ink); --warn-soft: var(--accent-soft);
-  --bad: var(--accent-ink); --bad-soft: var(--accent-soft);
-  --ig: #8b8f96;
+  --page: #f3f3f0;
+  --surface: #fcfcfb;
+  --sunk: #ecebe6;
+  --ink: #0b0b0b;
+  --ink2: #52514e;
+  --muted: #76746e;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --line: rgba(11, 11, 11, 0.10);
+  --brand: #5a48d0;
+  --brand-soft: #ebe8fb;
+  --yt: #2a78d6;
+  --ig: #eb6834;
+  --tt: #1baf7a;
+  --crit: #d03b3b;
+  --crit-ink: #b42e2e;
+  --crit-soft: #fbeaea;
+  --good: #006300;
+  --side-w: 236px;
   --f-display: "Archivo", "Arial Narrow", system-ui, sans-serif;
   --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-data: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
-  --r: 4px;
-  --bar-h: 60px;
-  --tabs-h: 46px;
+  --r: 10px;
+  color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0d0e10; --surface: #17181b; --sunk: #202226; --ink: #eeeeeb; --muted: #9a9ea6; --line: #2c2e33;
-    --accent: #e47a48; --accent-ink: #ee9a70; --accent-soft: #2e1e17; 
-    --ig: #7c8088; color-scheme: dark;
+    --page: #0e0e0d; --surface: #1a1a19; --sunk: #242422; --ink: #f0efec; --ink2: #c3c2b7; --muted: #98968f;
+    --grid: #2c2c2a; --axis: #383835; --line: rgba(255, 255, 255, 0.10);
+    --brand: #9085e9; --brand-soft: #25223d;
+    --yt: #3987e5; --ig: #d95926; --tt: #199e70;
+    --crit: #e05555; --crit-ink: #f08a8a; --crit-soft: #3a1e1e; --good: #0ca30c;
+    color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0d0e10; --surface: #17181b; --sunk: #202226; --ink: #eeeeeb; --muted: #9a9ea6; --line: #2c2e33;
-  --accent: #e47a48; --accent-ink: #ee9a70; --accent-soft: #2e1e17; 
-  --ig: #7c8088; color-scheme: dark;
+  --page: #0e0e0d; --surface: #1a1a19; --sunk: #242422; --ink: #f0efec; --ink2: #c3c2b7; --muted: #98968f;
+  --grid: #2c2c2a; --axis: #383835; --line: rgba(255, 255, 255, 0.10);
+  --brand: #9085e9; --brand-soft: #25223d;
+  --yt: #3987e5; --ig: #d95926; --tt: #199e70;
+  --crit: #e05555; --crit-ink: #f08a8a; --crit-soft: #3a1e1e; --good: #0ca30c;
+  color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 var(--f-body); }
-a { color: var(--accent-ink); text-underline-offset: 2px; }
-a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+body { margin: 0; background: var(--page); color: var(--ink); font: 15px/1.55 var(--f-body); }
+a { color: var(--brand); text-underline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
 h1, h2, h3 { font-family: var(--f-display); margin: 0; text-wrap: balance; }
-h2 { font-size: 1.2rem; font-weight: 700; font-stretch: 105%; letter-spacing: -0.005em; }
-h3 { font-size: 1.05rem; font-weight: 700; font-stretch: 108%; }
 p { margin: 0; }
+button, input, select { font: inherit; color: inherit; }
 .num, .mono { font-family: var(--f-data); font-variant-numeric: tabular-nums; }
-.eyebrow { font: 500 0.7rem/1.2 var(--f-data); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-.muted { color: var(--muted); }
-.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); }
-.inner { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.eyebrow { font: 500 0.7rem/1.2 var(--f-data); letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); }
+.muted { color: var(--ink2); }
+.small { font-size: 0.8rem; }
 
-/* Masthead */
-.bar { position: sticky; top: 0; z-index: 10; background: var(--band); color: var(--band-ink); border-bottom: 1px solid var(--line); }
-.bar .inner { height: var(--bar-h); display: flex; align-items: center; gap: 16px; }
-.logo { display: flex; align-items: center; gap: 9px; text-decoration: none; color: var(--band-ink); white-space: nowrap; }
-.logo .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-.logo b { font: 700 1.05rem/1 var(--f-display); font-stretch: 110%; }
-.search { flex: 1; min-width: 0; height: 38px; padding: 0 12px; font: 0.95rem var(--f-body); color: var(--band-ink); background: var(--bg); border: 1px solid var(--band-line); border-radius: var(--r); }
-.search::placeholder { color: var(--band-muted); }
-.due { font: 0.8rem/1.2 var(--f-data); color: var(--band-muted); white-space: nowrap; max-width: 36ch; overflow: hidden; text-overflow: ellipsis; text-decoration: none; }
-.due b { color: var(--ink); font-weight: 600; }
-.icon-btn { flex: none; width: 38px; height: 38px; display: grid; place-items: center; font: 1rem var(--f-body); color: var(--band-ink); background: transparent; border: 1px solid var(--band-line); border-radius: var(--r); cursor: pointer; }
+/* ---------- Shell ---------- */
+.app { display: grid; grid-template-columns: var(--side-w) minmax(0, 1fr); min-height: 100vh; }
+.side { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; gap: 18px; padding: 22px 14px 18px; border-right: 1px solid var(--line); background: var(--surface); }
+.logo { display: flex; align-items: center; gap: 10px; padding: 0 8px; text-decoration: none; color: var(--ink); }
+.mark { width: 30px; height: 30px; border-radius: 8px; background: var(--ink); color: var(--surface); display: grid; place-items: center; font: 800 1rem/1 var(--f-display); font-stretch: 120%; }
+.logo b { display: block; font: 750 1.1rem/1.05 var(--f-display); font-stretch: 112%; letter-spacing: -0.01em; }
+.logo small { display: block; font: 500 0.66rem/1.3 var(--f-data); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.nav { display: grid; gap: 2px; }
+.nav a { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 7px; text-decoration: none; color: var(--ink2); font-weight: 500; font-size: 0.92rem; }
+.nav a svg { width: 17px; height: 17px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.nav a:hover { background: var(--sunk); color: var(--ink); }
+.nav a[aria-current="page"] { background: var(--brand-soft); color: var(--ink); }
+.nav a[aria-current="page"] svg { stroke: var(--brand); }
+.nav .count { margin-left: auto; font: 600 0.7rem/1 var(--f-data); padding: 3px 6px; border-radius: 5px; background: var(--sunk); color: var(--ink2); }
+.nav .count:empty { display: none; }
+.nav .count.hot { background: var(--crit-soft); color: var(--crit-ink); }
+.side-foot { margin-top: auto; display: grid; gap: 10px; padding: 0 8px; }
+.next-run { padding: 12px; border-radius: var(--r); background: var(--sunk); display: grid; gap: 2px; }
+.next-run .num { font-size: 1.2rem; font-weight: 600; }
+.side-foot .row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.icon-btn { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; }
+.icon-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.8; }
 
-/* Tabs */
-.tabs { position: sticky; top: var(--bar-h); z-index: 9; background: var(--bg); border-bottom: 1px solid var(--line); }
-.tabs .inner { height: var(--tabs-h); display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
-.tabs a { flex: none; display: flex; align-items: center; gap: 6px; padding: 0 12px; color: var(--muted); text-decoration: none; font-weight: 500; font-size: 0.88rem; border-bottom: 2px solid transparent; }
-.tabs a:hover { color: var(--ink); }
-.tabs a.on { color: var(--ink); border-bottom-color: var(--ink); }
-.tabs small { font: 600 0.7rem/1 var(--f-data); padding: 3px 5px; border-radius: 3px; background: var(--sunk); color: var(--muted); }
-.tabs small:empty { display: none; }
-.tabs a.hot small { background: var(--accent-soft); color: var(--accent-ink); }
-@media (max-width: 700px) { .search { display: none; } .due { flex: 1; text-align: right; } }
+.main { min-width: 0; padding: 34px clamp(16px, 4vw, 48px) 64px; }
+.view { display: none; max-width: 1180px; margin: 0 auto; gap: 22px; }
+.view.on { display: grid; animation: rise 0.25s ease both; }
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } }
+@media (prefers-reduced-motion: reduce) { .view.on { animation: none; } }
+.head { display: grid; gap: 6px; }
+.head h1 { font-size: clamp(1.6rem, 3.4vw, 2.35rem); font-weight: 760; font-stretch: 108%; letter-spacing: -0.02em; line-height: 1.08; }
+.head h1 em { font-style: normal; color: var(--brand); }
+.head p.lede { color: var(--ink2); max-width: 70ch; }
 
-/* Stats band */
-.hero { background: transparent; color: var(--ink); scroll-margin-top: calc(var(--bar-h) + var(--tabs-h)); }
-.hero .inner { padding-top: 28px; padding-bottom: 4px; display: grid; gap: 10px; }
-.hero .eyebrow { color: var(--band-muted); }
-.hero h1 { font-size: clamp(1.5rem, 3.2vw, 1.9rem); font-weight: 700; font-stretch: 105%; letter-spacing: -0.01em; line-height: 1.15; }
-.hero h1 em { font-style: normal; color: var(--accent-ink); }
-.lede { color: var(--muted); font-size: 0.95rem; max-width: 66ch; }
-.strip { margin-top: 12px; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 0 16px; }
-.kpi { padding: 14px 18px 14px 0; display: grid; gap: 4px; align-content: start; border-right: 1px solid var(--band-line); margin-right: 18px; }
-.kpi:last-child { border-right: 0; }
-.kpi .eyebrow { color: var(--band-muted); }
-.kpi .v { font: 600 1.45rem/1.1 var(--f-data); font-variant-numeric: tabular-nums; }
+/* Mobile: sidebar turns into a top bar with a scrolling tab row */
+@media (max-width: 900px) {
+  .app { display: block; }
+  .side { position: sticky; z-index: 20; height: auto; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px 10px; padding: 10px 16px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+  .logo { padding: 0; }
+  .logo small { display: none; }
+  .side-foot { margin: 0 0 0 auto; padding: 0; display: flex; align-items: center; }
+  .next-run { display: none; }
+  .side-foot .stamp { display: none; }
+  .nav { order: 3; flex-basis: 100%; display: flex; overflow-x: auto; scrollbar-width: none; gap: 2px; margin: 0 -16px; padding: 0 12px 8px; }
+  .nav a { flex: none; padding: 7px 10px; font-size: 0.86rem; }
+  .nav a svg { display: none; }
+  .main { padding-top: 22px; }
+}
 
-.kpi .s { font-size: 0.82rem; color: var(--band-muted); }
-@media (max-width: 600px) { .kpi { border-right: 0; border-bottom: 1px solid var(--band-line); margin-right: 0; padding-bottom: 12px; } }
+/* ---------- Building blocks ---------- */
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; min-width: 0; }
+.panel-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 16px; margin-bottom: 12px; }
+.panel-head h2 { font-size: 1.05rem; font-weight: 700; font-stretch: 105%; }
+.panel-head p { flex: 1 0 100%; font-size: 0.85rem; color: var(--ink2); }
+.grid-2 { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); gap: 16px; }
+.grid-even { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 1000px) { .grid-2, .grid-even { grid-template-columns: 1fr; } }
 
-/* Page */
-.wrap { padding-top: 24px; padding-bottom: 64px; display: grid; gap: 44px; }
-.sec { display: grid; gap: 16px; min-width: 0; scroll-margin-top: calc(var(--bar-h) + var(--tabs-h) + 16px); }
-.sec-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 6px 16px; border-top: 1px solid var(--line); padding-top: 14px; }
-.sec-head p { grid-column: 1 / -1; color: var(--muted); max-width: 72ch; }
-@media (max-width: 700px) { .sec-head { grid-template-columns: 1fr; } }
-.alert { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; padding: 12px 16px; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); }
-.alert b { color: var(--accent-ink); }
-.alert .tag { grid-row: span 2; align-self: start; font: 600 0.7rem/1 var(--f-data); letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-ink); background: var(--accent-soft); padding: 5px 7px; border-radius: 3px; }
-.alert p { max-width: 90ch; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(146px, 1fr)); gap: 12px; }
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px 18px; display: grid; gap: 4px; align-content: start; }
+.kpi .v { font: 700 2rem/1.05 var(--f-display); font-stretch: 105%; letter-spacing: -0.02em; }
+.kpi .s { font-size: 0.8rem; color: var(--ink2); }
+.kpi.dark { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.kpi.dark .eyebrow, .kpi.dark .s { color: color-mix(in srgb, var(--surface) 70%, var(--ink)); }
 
-/* Pills: grey, or orange when it needs you */
-.pill { display: inline-flex; align-items: center; gap: 5px; font: 500 0.7rem/1 var(--f-data); padding: 4px 6px; border-radius: 3px; white-space: nowrap; background: var(--sunk); color: var(--muted); }
-.pill.bad, .pill.warn { background: var(--accent-soft); color: var(--accent-ink); }
-.pill.good { background: var(--sunk); color: var(--ink); }
-.pill.plain { border: 1px solid var(--line); }
-.pill.yt, .pill.ig, .pill.tt { background: var(--sunk); color: var(--ink); }
+.alert { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; padding: 14px 16px; border-radius: var(--r); background: var(--crit-soft); border: 1px solid color-mix(in srgb, var(--crit) 35%, transparent); }
+.alert .tag, .pill.crit { display: inline-flex; align-items: center; gap: 5px; font: 600 0.7rem/1 var(--f-data); letter-spacing: 0.05em; text-transform: uppercase; color: #fff; background: var(--crit); padding: 5px 7px; border-radius: 5px; }
+.alert .tag { grid-row: span 2; align-self: start; }
+.alert b { color: var(--crit-ink); }
 
-/* Last round */
-.round { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 16px; }
-@media (max-width: 860px) { .round { grid-template-columns: 1fr; } }
-.chart { padding: 16px; display: grid; gap: 4px; }
-.chart-head { display: grid; grid-template-columns: 9.5rem 1fr 4.2rem; gap: 10px; font: 0.7rem var(--f-data); text-transform: uppercase; color: var(--muted); padding-bottom: 6px; border-bottom: 1px solid var(--line); margin-bottom: 4px; }
-.bar-row { display: grid; grid-template-columns: 9.5rem 1fr 4.2rem; gap: 10px; align-items: center; min-height: 30px; }
-.bar-row .when { display: grid; line-height: 1.2; }
-.bar-row .when .num { font-size: 0.8rem; }
-.bar-row .when small { font-size: 0.7rem; color: var(--muted); }
-.bar-row .gap { color: var(--accent-ink); }
-.track { position: relative; height: 22px; background: var(--sunk); border-radius: 2px; min-width: 0; }
-.fill { position: absolute; inset: 0 auto 0 0; border-radius: 2px; background: color-mix(in srgb, var(--ink) 10%, var(--surface)); border-right: 2px solid var(--muted); min-width: 2px; }
-.fill.ig, .fill.tt { background: color-mix(in srgb, var(--ig) 22%, var(--surface)); border-right-color: var(--ig); }
-.fill.low { background: var(--accent-soft); border-right-color: color-mix(in srgb, var(--accent) 60%, var(--surface)); }
-.track .lbl { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); font-size: 0.74rem; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc(100% - 12px); }
-.bar-row .v { text-align: right; font-size: 0.85rem; font-weight: 600; }
-.divider { grid-column: 1 / -1; font: 0.7rem var(--f-data); text-transform: uppercase; color: var(--muted); padding: 6px 0 2px; border-top: 1px dashed var(--line); margin-top: 4px; }
-.notes { padding: 18px; display: grid; gap: 14px; align-content: start; }
-.notes ol { margin: 0; padding-left: 1.3rem; display: grid; gap: 10px; }
-.notes li::marker { font-family: var(--f-data); color: var(--accent-ink); font-weight: 600; }
+.pill { display: inline-flex; align-items: center; gap: 5px; font: 500 0.7rem/1 var(--f-data); padding: 4px 7px; border-radius: 5px; white-space: nowrap; background: var(--sunk); color: var(--ink2); }
+.pill.plain { background: transparent; border: 1px solid var(--line); }
+.pill.ok { color: var(--good); }
+.dot { width: 9px; height: 9px; border-radius: 50%; flex: none; display: inline-block; }
+.dot.yt, .sw.yt { background: var(--yt); } .dot.ig, .sw.ig { background: var(--ig); } .dot.tt, .sw.tt { background: var(--tt); }
+
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.8rem; color: var(--ink2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend .sw { width: 10px; height: 10px; border-radius: 50%; }
+.legend .sw.line { width: 16px; height: 0; border-radius: 0; border-top: 2px dashed var(--crit); }
+.legend .sw.bar { border-radius: 2px; width: 14px; }
+
+/* SVG charts */
+.chart { position: relative; width: 100%; }
+.chart svg { display: block; width: 100%; overflow: visible; }
+.chart text { font: 500 11px var(--f-data); fill: var(--muted); }
+.chart .lbl { fill: var(--ink2); font-family: var(--f-body); font-size: 12px; }
+.chart .lbl-strong { fill: var(--ink); font-family: var(--f-body); font-size: 12px; font-weight: 600; }
+.chart .gridline { stroke: var(--grid); stroke-width: 1; }
+.chart .baseline { stroke: var(--axis); stroke-width: 1; }
+.chart .threshold { stroke: var(--crit); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.chart .threshold-lbl { fill: var(--crit-ink); }
+.chart .run { stroke: var(--brand); stroke-width: 1.5; stroke-dasharray: 2 4; }
+.chart .run-lbl { fill: var(--brand); }
+.chart .mark { stroke: var(--surface); stroke-width: 2; }
+.chart .yt { fill: var(--yt); } .chart .ig { fill: var(--ig); } .chart .tt { fill: var(--tt); }
+.chart .hit { fill: transparent; cursor: pointer; }
+.chart .hit:hover + .mark, .chart .hit:focus + .mark { stroke: var(--ink); }
+.chart .conn { stroke: var(--axis); stroke-width: 2; }
+.chart .track { fill: var(--sunk); }
+.chart .bar-all { fill: color-mix(in srgb, var(--brand) 30%, var(--surface)); }
+.chart .bar-sub { fill: var(--brand); }
+.chart .target { stroke: var(--ink); stroke-width: 2; }
+.table-toggle { margin-top: 10px; font-size: 0.8rem; color: var(--ink2); }
+.table-toggle summary { cursor: pointer; width: max-content; }
+.table-toggle .scroll { overflow-x: auto; margin-top: 8px; }
+
+#tip { position: fixed; z-index: 50; pointer-events: none; max-width: 280px; padding: 8px 10px; border-radius: 8px; background: var(--ink); color: var(--surface); font-size: 0.8rem; line-height: 1.4; box-shadow: 0 6px 24px rgba(0,0,0,0.18); opacity: 0; transition: opacity 0.1s; }
+#tip.on { opacity: 1; }
+#tip b { display: block; font-weight: 600; margin-bottom: 2px; }
+#tip span { display: block; font-family: var(--f-data); font-size: 0.74rem; opacity: 0.85; }
+
+/* HTML bars */
+.hbars { display: grid; gap: 12px; }
+.hbar { display: grid; gap: 5px; }
+.hbar-top { display: flex; justify-content: space-between; gap: 10px; font-size: 0.86rem; }
+.hbar-top b { font-weight: 600; display: inline-flex; align-items: center; gap: 7px; }
+.hbar-top .num { font-weight: 600; }
+.hbar-track { height: 12px; border-radius: 0 4px 4px 0; background: var(--sunk); overflow: hidden; }
+.hbar-fill { height: 100%; border-radius: 0 4px 4px 0; min-width: 3px; background: var(--brand); transition: width 0.4s ease; }
+.hbar-fill.yt { background: var(--yt); } .hbar-fill.ig { background: var(--ig); } .hbar-fill.tt { background: var(--tt); }
+.hbar small { font-size: 0.74rem; color: var(--ink2); }
+
+/* Insights */
+.insights { display: grid; gap: 14px; counter-reset: ins; }
+.insights li { list-style: none; display: grid; grid-template-columns: 30px 1fr; gap: 10px; font-size: 0.9rem; color: var(--ink2); }
+.insights li::before { counter-increment: ins; content: counter(ins, decimal-leading-zero); font: 600 0.8rem/1.9 var(--f-data); color: var(--brand); }
+.insights b { color: var(--ink); }
+.insights ol { margin: 0; padding: 0; display: grid; gap: 14px; }
+
+/* Queue + tasks */
+.qlist { display: grid; gap: 10px; }
+.qcard { padding: 12px 14px; border-radius: 8px; background: var(--sunk); display: grid; gap: 4px; }
+.qcard b { font-family: var(--f-display); font-size: 1rem; font-stretch: 105%; line-height: 1.25; }
+.qcard p { font-size: 0.85rem; color: var(--ink2); }
+.qcard.soon { box-shadow: inset 3px 0 0 var(--crit); }
+.empty { display: grid; gap: 4px; padding: 18px; border-radius: 8px; border: 1px dashed var(--axis); text-align: center; color: var(--ink2); font-size: 0.88rem; }
+.empty b { color: var(--ink); font-family: var(--f-display); font-size: 1.05rem; }
+.mini-tasks { display: grid; gap: 8px; }
+.mini-tasks a { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; padding: 10px 12px; border-radius: 8px; background: var(--sunk); color: var(--ink); text-decoration: none; font-size: 0.88rem; font-weight: 500; }
+.mini-tasks a:hover { background: color-mix(in srgb, var(--sunk) 70%, var(--axis)); }
+
+/* Clips */
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.search { flex: 1 1 220px; min-width: 0; height: 38px; padding: 0 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+.seg { display: flex; flex-wrap: wrap; gap: 4px; }
+.seg button { font: 500 0.8rem/1 var(--f-body); padding: 9px 11px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+select.sort { height: 38px; padding: 0 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); }
+.wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 16px; }
+.clip { display: grid; gap: 8px; align-content: start; text-decoration: none; color: inherit; min-width: 0; }
+.frame { position: relative; aspect-ratio: 9 / 16; border-radius: var(--r); overflow: hidden; background: var(--sunk); box-shadow: 0 0 0 1px var(--line); transition: transform 0.15s ease, box-shadow 0.15s; }
+.clip:hover .frame { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--line), 0 10px 24px rgba(0,0,0,0.14); }
+.frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.frame .over { position: absolute; inset: auto 0 0 0; padding: 34px 10px 10px; background: linear-gradient(transparent, rgba(0,0,0,0.82)); color: #fff; display: flex; justify-content: space-between; align-items: flex-end; gap: 6px; }
+.frame .over .big { font: 700 1.35rem/1 var(--f-display); font-stretch: 105%; }
+.frame .over small { font-size: 0.68rem; opacity: 0.85; font-family: var(--f-data); }
+.frame .corner { position: absolute; top: 8px; left: 8px; right: 8px; display: flex; justify-content: space-between; gap: 4px; }
+.frame .corner .pill { background: rgba(0,0,0,0.62); color: #fff; backdrop-filter: blur(4px); }
+.frame .corner .pill.crit { background: var(--crit); }
+.clip-title { font-size: 0.86rem; line-height: 1.35; font-weight: 500; }
+.clip-meta { display: flex; flex-wrap: wrap; gap: 4px; }
 
 /* Channels */
-.chans { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; }
-.chan { padding: 16px; display: grid; gap: 12px; grid-template-rows: auto auto auto 1fr; }
+.chans { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+.chan { display: grid; gap: 14px; grid-template-rows: auto auto auto 1fr; }
 .chan-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
-.chan-top h3 { font-size: 1.25rem; }
-.chan-top a { font-size: 0.82rem; text-decoration: none; }
-.chan-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.chan-stats div { display: grid; gap: 2px; }
+.chan-top h3 { font-size: 1.3rem; font-weight: 750; font-stretch: 108%; }
+.chan-top a { font-size: 0.8rem; text-decoration: none; }
+.chan-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 10px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.chan-stats div { display: grid; gap: 1px; }
 .chan-stats .num { font-size: 1.15rem; font-weight: 600; }
-.chan-stats .eyebrow { font-size: 0.62rem; }
 .ladder { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3px; }
-.ladder i { height: 6px; background: var(--sunk); }
-.ladder i.on { background: var(--ink); }
-.ladder i.now { background: var(--muted); }
-.stage-name { display: flex; justify-content: space-between; gap: 8px; font-size: 0.82rem; }
-.stage-name b { font-family: var(--f-display); font-stretch: 110%; }
-.chan p.note { font-size: 0.85rem; color: var(--muted); align-self: end; }
-.stage-key { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px 16px; font-size: 0.82rem; color: var(--muted); padding: 14px 16px; background: var(--sunk); border-radius: var(--r); }
-.stage-key b { color: var(--ink); font-family: var(--f-data); font-weight: 600; margin-right: 4px; }
-
-/* Clips wall */
-.wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(158px, 1fr)); gap: 12px; }
-.clip { display: grid; gap: 8px; text-decoration: none; color: inherit; min-width: 0; }
-.frame { position: relative; aspect-ratio: 9 / 16; max-width: 100%; border-radius: var(--r); overflow: hidden; background: var(--sunk); outline: 1px solid var(--line); }
-.frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.frame .over { position: absolute; inset: auto 0 0 0; padding: 26px 8px 8px; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: #fff; display: flex; justify-content: space-between; align-items: flex-end; gap: 6px; }
-.frame .over .num { font-size: 1.05rem; font-weight: 600; }
-.frame .over small { font-size: 0.68rem; opacity: 0.85; }
-.frame .corner { position: absolute; top: 7px; left: 7px; display: flex; gap: 4px; flex-wrap: wrap; }
-.frame .corner .pill { background: rgba(0,0,0,0.65); color: #fff; }
-.clip:hover .frame { outline: 1px solid var(--muted); }
-.clip-title { font-size: 0.84rem; line-height: 1.35; font-weight: 500; }
-.clip-meta { display: flex; flex-wrap: wrap; gap: 4px; }
-.filters { display: flex; flex-wrap: wrap; gap: 4px; }
-.filters button { font: 500 0.78rem/1 var(--f-data); padding: 7px 10px; border-radius: 3px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
-.filters button[aria-pressed="true"] { background: var(--sunk); color: var(--ink); border-color: var(--muted); }
-.gone { font-size: 0.82rem; color: var(--muted); }
+.ladder i { height: 6px; border-radius: 3px; background: var(--sunk); }
+.ladder i.on { background: var(--brand); }
+.ladder i.now { background: color-mix(in srgb, var(--brand) 45%, var(--surface)); }
+.stage-name { display: flex; justify-content: space-between; gap: 8px; font-size: 0.82rem; margin-top: 6px; }
+.stage-name b { font-family: var(--f-display); font-stretch: 108%; }
+.chan p.note { font-size: 0.84rem; color: var(--ink2); align-self: end; }
+.stages { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; counter-reset: st; }
+.stages div { padding: 12px 14px 4px; border-top: 3px solid var(--brand-soft); display: grid; gap: 3px; font-size: 0.82rem; color: var(--ink2); }
+.stages div b { color: var(--ink); font-family: var(--f-display); font-stretch: 105%; font-size: 0.95rem; }
+.stages div .num { color: var(--brand); font-size: 0.72rem; }
+@media (max-width: 760px) { .stages { grid-template-columns: 1fr 1fr; } }
 
 /* Campaigns */
-.camps { overflow-x: auto; }
+.calc { display: grid; gap: 14px; }
+.slider { display: grid; gap: 6px; }
+.slider-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.slider-top .num { font: 700 1.6rem/1 var(--f-display); font-stretch: 105%; }
+input[type="range"] { width: 100%; accent-color: var(--brand); }
+.tbl { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
-th { text-align: left; font: 500 0.68rem/1.2 var(--f-data); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding: 12px 14px; border-bottom: 1px solid var(--line); white-space: nowrap; }
-td { padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { text-align: left; font: 500 0.68rem/1.2 var(--f-data); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding: 10px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
 tr:last-child td { border-bottom: 0; }
-td .sub { display: block; font-size: 0.76rem; color: var(--muted); }
-.meter { display: grid; gap: 5px; min-width: 190px; }
-.meter .track { height: 6px; }
-.meter .fill { background: var(--accent); border-right: 0; }
-.meter .row { display: flex; justify-content: space-between; gap: 8px; font-size: 0.76rem; }
-.group-row td { background: var(--sunk); font: 500 0.7rem/1 var(--f-data); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding: 9px 14px; }
+td .sub { display: block; font-size: 0.76rem; color: var(--ink2); }
+td.n, th.n { text-align: right; font-family: var(--f-data); font-variant-numeric: tabular-nums; }
+.group-row td { background: var(--sunk); font: 500 0.7rem/1 var(--f-data); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink2); padding: 9px 12px; }
 
 /* Schedule */
-.sched { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 16px; }
-@media (max-width: 860px) { .sched { grid-template-columns: 1fr; } }
-.week { overflow-x: auto; }
-.week table td, .week table th { text-align: center; padding: 10px 8px; }
-.week table td:first-child, .week table th:first-child { text-align: left; white-space: nowrap; }
-.week .today { background: var(--sunk); }
-.week .bump { color: var(--ink); font-weight: 700; }
-.cap { font-family: var(--f-data); font-weight: 600; }
-.cap.hold { color: var(--accent-ink); }
-.side { display: grid; gap: 16px; align-content: start; }
-.runs { padding: 16px; display: grid; gap: 10px; }
-.runs .times { display: flex; gap: 10px; flex-wrap: wrap; }
-.runs .time { flex: 1; min-width: 120px; padding: 10px 12px; border-radius: var(--r); background: var(--sunk); display: grid; gap: 2px; }
-.runs .time .num { font-size: 1.4rem; font-weight: 600; }
-.runs .time small { color: var(--muted); font-size: 0.74rem; }
-.countdown { font-size: 0.9rem; }
-
-/* Waiting for your OK */
-.queue { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
-.qcard { padding: 14px 16px; display: grid; gap: 6px; align-content: start; }
-.qcard.soon { border-left: 3px solid var(--accent); }
-.qcard b { font-family: var(--f-display); font-size: 1.05rem; font-stretch: 105%; line-height: 1.25; }
-.qcard p { font-size: 0.88rem; color: var(--muted); }
+.runs { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.run-card { display: grid; gap: 2px; }
+.run-card .big { font: 700 2.2rem/1 var(--f-display); font-stretch: 105%; letter-spacing: -0.02em; }
+.run-card.next { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.run-card.next .eyebrow, .run-card.next .muted { color: color-mix(in srgb, var(--surface) 70%, var(--ink)); }
+.week td, .week th { text-align: center; }
+.week td:first-child, .week th:first-child { text-align: left; white-space: nowrap; }
+.week .today { background: var(--brand-soft); }
+.cap { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 7px; background: var(--sunk); font: 600 0.85rem/1 var(--f-data); }
+.cap.up { background: var(--brand); color: #fff; }
+.cap.hold { background: var(--crit-soft); color: var(--crit-ink); box-shadow: inset 0 0 0 1px var(--crit); }
 
 /* To-do */
-.todo { display: grid; gap: 8px; }
+.progress { display: grid; gap: 8px; }
+.progress .hbar-track { height: 8px; }
+.todo-group { display: grid; gap: 8px; }
+.todo-group h3 { font-size: 0.95rem; display: flex; align-items: center; gap: 8px; margin-top: 6px; }
 .task { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; padding: 14px 16px; }
-.task input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--accent); grid-row: span 2; }
-.task label { font-weight: 600; cursor: pointer; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-.task p { font-size: 0.86rem; color: var(--muted); overflow-wrap: anywhere; }
-.task.done label { text-decoration: line-through; color: var(--muted); }
+.task input { width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--brand); grid-row: span 2; cursor: pointer; }
+.task label { font-weight: 600; cursor: pointer; }
+.task p { font-size: 0.86rem; color: var(--ink2); overflow-wrap: anywhere; }
+.task.done { opacity: 0.55; }
+.task.done label { text-decoration: line-through; }
 
-/* Rules */
-.rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
-.rule { padding: 14px 16px; display: grid; gap: 6px; align-content: start; }
-.rule ul { margin: 0; padding-left: 1.1rem; font-size: 0.86rem; display: grid; gap: 4px; }
+/* Playbook */
+.flow { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; counter-reset: fl; }
+.flow div { position: relative; padding: 14px 12px; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); display: grid; gap: 4px; align-content: start; font-size: 0.8rem; color: var(--ink2); }
+.flow div::before { counter-increment: fl; content: counter(fl); font: 600 0.72rem/1 var(--f-data); color: var(--brand); }
+.flow b { color: var(--ink); font-family: var(--f-display); font-stretch: 105%; font-size: 0.98rem; }
+.flow div.you { background: var(--brand-soft); border-color: transparent; }
+@media (max-width: 1000px) { .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.rule { display: grid; gap: 8px; align-content: start; }
+.rule h3 { font-size: 1.02rem; }
+.rule ul { margin: 0; padding-left: 1.1rem; font-size: 0.87rem; display: grid; gap: 5px; color: var(--ink2); }
 
-footer { font-size: 0.78rem; color: var(--muted); display: grid; gap: 4px; border-top: 1px solid var(--line); padding-top: 16px; }
-.err { padding: 16px; }
-@media (prefers-reduced-motion: no-preference) { .fill { transition: width 0.5s ease; } }
+footer.foot { font-size: 0.76rem; color: var(--ink2); display: grid; gap: 4px; border-top: 1px solid var(--line); padding-top: 14px; margin-top: 8px; }
 </style>
 </head>
 <body>
-<header class="bar">
-  <div class="inner">
-    <a class="logo" href="#top"><span class="dot" aria-hidden="true"></span><b>Bobelly HQ</b></a>
-    <input class="search" id="search" type="search" placeholder="Search clips, streamers, campaigns…" aria-label="Search clips">
-    <a class="due" id="due" href="#review"></a>
-    <button class="icon-btn" id="theme" type="button" aria-label="Switch light or dark">◐</button>
-  </div>
-</header>
-<nav class="tabs" id="nav" aria-label="Sections">
-  <div class="inner">
-    <a href="#top">Overview</a>
-    <a href="#review" id="t-review">For your OK <small id="n-review"></small></a>
-    <a href="#todo-sec">To-do <small id="n-todo"></small></a>
-    <a href="#round">Last round</a>
-    <a href="#clips">Clips <small id="n-clips"></small></a>
-    <a href="#channels">Channels <small id="n-chans"></small></a>
-    <a href="#campaigns">Campaigns <small id="n-camps"></small></a>
-    <a href="#schedule">Schedule</a>
-    <a href="#rules-sec">Rules</a>
-  </div>
-</nav>
-<section class="hero" id="top">
-  <div class="inner">
-    <span class="eyebrow">Short-form clipping · snapshot <span id="updated">Loading…</span></span>
-    <h1 id="headline">Everything <em>Bobelly</em> in one place</h1>
-    <p class="lede" id="lede">Posts, views, channels and campaigns. New clips wait for your OK in Telegram before anything goes live.</p>
-    <div class="strip" id="kpis"></div>
-  </div>
-</section>
-<main class="wrap inner" id="app">
-  <div class="alert" id="alert" hidden></div>
+<div class="app">
+  <aside class="side">
+    <a class="logo" href="#overview"><span class="mark" aria-hidden="true">B</span><span><b>Bobelly HQ</b><small>Clipping control room</small></span></a>
+    <nav class="nav" id="nav" aria-label="Sections">
+      <a href="#overview"><svg viewBox="0 0 24 24"><path d="M3 12l9-8 9 8M5 10v10h14V10"/></svg>Overview<span class="count" id="n-overview"></span></a>
+      <a href="#clips"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M10 9l4 3-4 3z"/></svg>Clips<span class="count" id="n-clips"></span></a>
+      <a href="#channels"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Channels<span class="count" id="n-chans"></span></a>
+      <a href="#campaigns"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.5-1-1.6-1.5-3-1.5-1.7 0-3 .8-3 2s1.3 1.7 3 2 3 .8 3 2-1.3 2-3 2c-1.4 0-2.5-.5-3-1.5M12 6v12"/></svg>Campaigns<span class="count" id="n-camps"></span></a>
+      <a href="#schedule"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Schedule</a>
+      <a href="#todo"><svg viewBox="0 0 24 24"><path d="M4 6l2 2 4-4M4 14l2 2 4-4M14 6h6M14 14h6"/></svg>To-do<span class="count" id="n-todo"></span></a>
+      <a href="#playbook"><svg viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5zM9 10h6M9 14h6"/></svg>Playbook</a>
+    </nav>
+    <div class="side-foot">
+      <div class="next-run"><span class="eyebrow">Next run</span><span class="num" id="side-next">–</span><span class="small muted" id="side-next-sub"></span></div>
+      <div class="row"><span class="small muted stamp" id="stamp">Loading…</span>
+        <button class="icon-btn" id="theme" type="button" aria-label="Switch light or dark"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg></button></div>
+    </div>
+  </aside>
 
-  <section class="sec" id="review">
-    <div class="sec-head">
-      <h2>Waiting for your OK</h2>
-      <p>Clips that passed review and that the strategy wants posted. Approve, change or drop them in Telegram. Each one goes stale 48 h after the moment.</p>
-    </div>
-    <div class="queue" id="queue"></div>
-  </section>
-
-  <section class="sec" id="round">
-    <div class="sec-head">
-      <h2>How the last round went</h2>
-      <p>Every post so far, in upload order. Views from the live APIs at snapshot time.</p>
-    </div>
-    <div class="round">
-      <div class="panel chart" id="chart"></div>
-      <div class="panel notes" id="notes"></div>
-    </div>
-  </section>
-
-  <section class="sec" id="channels">
-    <div class="sec-head">
-      <h2>Channels and growth stage</h2>
-      <p>Where each account sits on the ladder from new account to YouTube Partner.</p>
-    </div>
-    <div class="chans" id="chans"></div>
-    <div class="stage-key" id="stagekey"></div>
-  </section>
-
-  <section class="sec" id="clips">
-    <div class="sec-head">
-      <h2>Recent clips</h2>
-      <div class="filters" id="filters" role="group" aria-label="Filter clips by account"></div>
-    </div>
-    <div class="wall" id="wall"></div>
-    <p class="gone" id="gone"></p>
-  </section>
-
-  <section class="sec" id="campaigns">
-    <div class="sec-head">
-      <h2>Campaigns</h2>
-      <p>Pools pay a share when the marathon ends, and only if your submitted views clear the minimum. Views on posts that were never submitted don't count.</p>
-    </div>
-    <div class="panel camps" id="camps"></div>
-  </section>
-
-  <section class="sec" id="schedule">
-    <div class="sec-head">
-      <h2>Schedule</h2>
-      <p>The Mac runs Claude twice a day to make clips. Nothing posts until you tap ✅ in Telegram.</p>
-    </div>
-    <div class="sched">
-      <div class="panel week" id="week"></div>
-      <div class="side">
-        <div class="panel runs" id="runs"></div>
+  <main class="main" id="main">
+    <!-- OVERVIEW -->
+    <section class="view" id="v-overview" data-view="overview" aria-labelledby="h-overview">
+      <div class="head">
+        <span class="eyebrow" id="ov-eyebrow">Snapshot</span>
+        <h1 id="h-overview">Everything <em>Bobelly</em> in one place</h1>
+        <p class="lede" id="ov-lede"></p>
       </div>
-    </div>
-  </section>
+      <div class="alert" id="alert" hidden></div>
+      <div class="kpis" id="kpis"></div>
+      <div class="grid-2">
+        <div class="panel">
+          <div class="panel-head"><h2>Every post, views on a log scale</h2>
+            <div class="legend" id="lg-timeline"></div>
+            <p>Each dot is one post, placed at its upload time. Below the red line after 6 hours, a channel counts as stalled.</p></div>
+          <div class="chart" id="c-timeline"></div>
+          <details class="table-toggle"><summary>Show as a table</summary><div class="scroll" id="t-timeline"></div></details>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h2>Views per post, by platform</h2><p>Average across all posts on that platform.</p></div>
+          <div class="hbars" id="c-platforms"></div>
+          <div style="margin-top:18px" class="panel-head"><h2>Where the views came from</h2></div>
+          <div class="hbars" id="c-share"></div>
+        </div>
+      </div>
+      <div class="grid-even">
+        <div class="panel">
+          <div class="panel-head"><h2>Waiting for your OK</h2><p>Clips that passed review. Approve, change or drop them in Telegram; each goes stale 48 h after the moment.</p></div>
+          <div class="qlist" id="queue"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h2>Needs you now</h2><a href="#todo" class="small">All to-dos →</a></div>
+          <div class="mini-tasks" id="ov-tasks"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2>What it tells us</h2></div>
+        <div class="insights" id="notes"></div>
+      </div>
+    </section>
 
-  <section class="sec" id="todo-sec">
-    <div class="sec-head">
-      <h2>Your to-do</h2>
-      <p>Things only you can do. Ticks are saved in this browser only.</p>
-    </div>
-    <div class="todo" id="todo"></div>
-  </section>
+    <!-- CLIPS -->
+    <section class="view" id="v-clips" data-view="clips" aria-labelledby="h-clips">
+      <div class="head"><span class="eyebrow">Library</span><h1 id="h-clips">Clips</h1>
+        <p class="lede">Every post on every account, newest first. Tap one to open it.</p></div>
+      <div class="toolbar">
+        <input class="search" id="search" type="search" placeholder="Search clips, streamers, campaigns…" aria-label="Search clips">
+        <select class="sort" id="sort" aria-label="Sort clips"><option value="new">Newest</option><option value="views">Most views</option><option value="short">Shortest</option></select>
+      </div>
+      <div class="seg" id="filters" role="group" aria-label="Filter by account"></div>
+      <div class="wall" id="wall"></div>
+      <div class="panel">
+        <div class="panel-head"><h2>Does length matter?</h2><div class="legend" id="lg-scatter"></div>
+          <p>Clip length against views. The brief says 15 to 30 seconds (shaded).</p></div>
+        <div class="chart" id="c-scatter"></div>
+      </div>
+      <p class="small muted" id="gone"></p>
+    </section>
 
-  <section class="sec" id="rules-sec">
-    <div class="sec-head"><h2>Rules at a glance</h2></div>
-    <div class="rules">
-      <div class="panel rule"><h3>Every clip</h3><ul>
-        <li>15–30 s, starts on the action, ends on the payoff</li>
-        <li>One-word captions, 1–3 tags, 1–2 zooms, credit</li>
-        <li>"Paid partnership" on screen, <span class="mono">#ad</span> in the description</li>
-        <li>qc passes and the clip-reviewer says PASS</li>
-      </ul></div>
-      <div class="panel rule"><h3>Posting</h3><ul>
-        <li>Public right away, never unlisted first</li>
-        <li>Never two uploads within 10 minutes</li>
-        <li>Submit on Content Rewards within 30 minutes</li>
-        <li>Same clip never on both channels</li>
-      </ul></div>
-      <div class="panel rule"><h3>Required tags</h3><ul>
-        <li>Lacy: "Lacy" + <span class="mono">#LACY</span></li>
-        <li>Clix: "Clix" + <span class="mono">#Clix</span></li>
-        <li>Kai Cenat: "Kai Cenat" + <span class="mono">#KaiCenat</span></li>
-        <li>YourRAGE: <span class="mono">#yourrage</span></li>
-      </ul></div>
-      <div class="panel rule"><h3>Hard skips</h3><ul>
-        <li>Nudity (NPCs too), sexual talk or held shots</li>
-        <li>Jokes about real tragedies, slurs</li>
-        <li>Real-world violence, minors, personal info</li>
-        <li>GTA crime, cops, chaos and swearing are fine</li>
-      </ul></div>
-    </div>
-  </section>
+    <!-- CHANNELS -->
+    <section class="view" id="v-channels" data-view="channels" aria-labelledby="h-channels">
+      <div class="head"><span class="eyebrow">Accounts</span><h1 id="h-channels">Channels and growth</h1>
+        <p class="lede">Where each account sits on the ladder from brand-new to YouTube Partner.</p></div>
+      <div class="chans" id="chans"></div>
+      <div class="grid-even">
+        <div class="panel">
+          <div class="panel-head"><h2>Views by account</h2><p>All posts, raw platform counts.</p></div>
+          <div class="hbars" id="c-accounts"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h2>Same edit, different platform</h2><div class="legend" id="lg-dumbbell"></div>
+            <p>One row per edit that went up in more than one place. Log scale.</p></div>
+          <div class="chart" id="c-dumbbell"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2>The growth ladder</h2></div>
+        <div class="stages" id="stagekey"></div>
+      </div>
+    </section>
 
-  <footer id="foot"></footer>
-</main>
+    <!-- CAMPAIGNS -->
+    <section class="view" id="v-campaigns" data-view="campaigns" aria-labelledby="h-campaigns">
+      <div class="head"><span class="eyebrow">Money</span><h1 id="h-campaigns">Campaigns</h1>
+        <p class="lede">Pools pay a share when the marathon ends, and only if submitted views clear the minimum. Per-view campaigns pay from a budget until it runs out.</p></div>
+      <div class="panel">
+        <div class="panel-head"><h2>Pools: how far from the minimum</h2><div class="legend" id="lg-pools"></div>
+          <p>Log scale, because the gap is several zeros wide. Only submitted views count toward the minimum.</p></div>
+        <div class="chart" id="c-pools"></div>
+      </div>
+      <div class="panel calc">
+        <div class="panel-head"><h2>What one clip would earn</h2><p>Per-view campaigns, with each campaign's minimum payout and cap per clip applied.</p></div>
+        <div class="slider">
+          <div class="slider-top"><label for="views-slider" class="eyebrow">Views on the clip</label><span class="num" id="views-out">50,000</span></div>
+          <input type="range" id="views-slider" min="0" max="100" step="1" value="57">
+        </div>
+        <div class="hbars" id="c-cpm"></div>
+      </div>
+      <div class="panel tbl" id="camps"></div>
+    </section>
+
+    <!-- SCHEDULE -->
+    <section class="view" id="v-schedule" data-view="schedule" aria-labelledby="h-schedule">
+      <div class="head"><span class="eyebrow">Rhythm</span><h1 id="h-schedule">Schedule</h1>
+        <p class="lede">The Mac runs Claude twice a day to find and cut clips. Nothing posts until you tap ✅ in Telegram.</p></div>
+      <div class="runs" id="runs"></div>
+      <div class="panel">
+        <div class="panel-head"><h2>When we posted (CET)</h2><div class="legend" id="lg-clock"></div>
+          <p>One row per day. The dotted lines are the two daily runs; the campaigns want US viewers, so they sit at 10:30 and 17:00 New York time.</p></div>
+        <div class="chart" id="c-clock"></div>
+      </div>
+      <div class="panel tbl week" id="week"></div>
+    </section>
+
+    <!-- TO-DO -->
+    <section class="view" id="v-todo" data-view="todo" aria-labelledby="h-todo">
+      <div class="head"><span class="eyebrow">For Jakob</span><h1 id="h-todo">Your to-do</h1>
+        <p class="lede">Things only you can do. Ticks are saved in this browser only.</p></div>
+      <div class="panel progress" id="todo-progress"></div>
+      <div id="todo" style="display:grid;gap:18px"></div>
+    </section>
+
+    <!-- PLAYBOOK -->
+    <section class="view" id="v-playbook" data-view="playbook" aria-labelledby="h-playbook">
+      <div class="head"><span class="eyebrow">How it works</span><h1 id="h-playbook">Playbook</h1>
+        <p class="lede">The path every clip takes, and the rules it has to pass. Shaded steps are yours.</p></div>
+      <div class="flow">
+        <div><b>Find</b>Top Twitch clips from the last 24 h</div>
+        <div><b>Pick</b>Score the moment, 70+ gets cut</div>
+        <div><b>Edit</b>15–30 s, captions, zooms, sound</div>
+        <div><b>Check</b>Auto QC, then the clip reviewer</div>
+        <div class="you"><b>Approve</b>✅ in Telegram</div>
+        <div><b>Post</b>Public, 10+ min apart</div>
+        <div><b>Submit</b>Content Rewards within 30 min</div>
+      </div>
+      <div class="rules">
+        <div class="panel rule"><h3>Every clip</h3><ul>
+          <li>15–30 s, starts on the action, ends on the payoff</li>
+          <li>One-word captions, 1–3 tags, 1–2 zooms, credit</li>
+          <li>Campaign clips: "Paid partnership" on screen, <span class="mono">#ad</span> in the description</li>
+          <li>Unpaid clips: no disclosure, never submitted later</li>
+          <li>QC passes and the clip reviewer says PASS</li>
+        </ul></div>
+        <div class="panel rule"><h3>Posting</h3><ul>
+          <li>Public right away, never unlisted first</li>
+          <li>Never two uploads within 10 minutes</li>
+          <li>Submit on Content Rewards within 30 minutes</li>
+          <li>Same clip never on both channels</li>
+          <li>Stalled channel: 1 clip a day until it recovers</li>
+        </ul></div>
+        <div class="panel rule"><h3>Required tags</h3><ul>
+          <li>Lacy: "Lacy" + <span class="mono">#LACY</span></li>
+          <li>Clix: "Clix" + <span class="mono">#Clix</span></li>
+          <li>Kai Cenat: "Kai Cenat" + <span class="mono">#KaiCenat</span></li>
+          <li>YourRAGE: <span class="mono">#yourrage</span></li>
+        </ul></div>
+        <div class="panel rule"><h3>Hard skips</h3><ul>
+          <li>Nudity (NPCs too), sexual talk or held shots</li>
+          <li>Jokes about real tragedies</li>
+          <li>Real-world violence, minors, personal info</li>
+          <li>Slurs and sexual words are muted; other swears only kept at the peak</li>
+          <li>GTA crime, cops and chaos are fine</li>
+        </ul></div>
+      </div>
+    </section>
+
+    <footer class="foot" id="foot"></footer>
+  </main>
+</div>
+<div id="tip" role="tooltip"></div>
 
 <script>
 (function () {
   "use strict";
   var $ = function (id) { return document.getElementById(id); };
   var fmt = function (n) { return n == null ? "–" : Number(n).toLocaleString("en-US"); };
+  var short = function (n) { return n >= 1e6 ? (n / 1e6).toFixed(n % 1e6 ? 1 : 0) + "M" : n >= 1e3 ? (n / 1e3).toFixed(n % 1e3 && n < 1e4 ? 1 : 0).replace(".0", "") + "K" : String(n); };
   var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
   var TZ = "Europe/Copenhagen";
   var timeFmt = new Intl.DateTimeFormat("en-GB", { timeZone: TZ, day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", hour12: false });
-  var hm = new Intl.DateTimeFormat("en-GB", { timeZone: TZ, hour: "2-digit", minute: "2-digit", hour12: false });
   var dayFmt = new Intl.DateTimeFormat("en-GB", { timeZone: TZ, weekday: "short", day: "numeric", month: "short" });
+  var dayShort = new Intl.DateTimeFormat("en-GB", { timeZone: TZ, weekday: "short", day: "numeric" });
   var ymd = new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" });
-
+  function cetParts(dt) {
+    var o = {};
+    new Intl.DateTimeFormat("en-GB", { timeZone: TZ, hour: "2-digit", minute: "2-digit", hour12: false }).formatToParts(dt).forEach(function (p) { o[p.type] = p.value; });
+    return { h: +o.hour % 24, m: +o.minute };
+  }
+  var PF = { YouTube: "yt", Instagram: "ig", TikTok: "tt" };
+  var PLATFORMS = ["YouTube", "Instagram", "TikTok"];
+  function legend(id, items) {
+    $(id).innerHTML = items.map(function (it) { return '<span><i class="sw ' + it[0] + '"></i>' + esc(it[1]) + "</span>"; }).join("");
+  }
   function ageText(fromIso, toIso) {
     var h = (new Date(toIso) - new Date(fromIso)) / 36e5;
     if (h < 1) return Math.round(h * 60) + " min";
     if (h < 48) return Math.round(h) + " h";
     return Math.round(h / 24) + " d";
   }
-  function gapText(mins) {
-    if (mins < 1) return Math.round(mins * 60) + " s after previous";
-    if (mins < 90) return Math.round(mins) + " min after previous";
-    return (mins / 60).toFixed(1) + " h after previous";
+  function tipAttr(title, lines) { return ' tabindex="0" data-tip="' + esc([title].concat(lines || []).join("||")) + '"'; }
+
+  // symlog: log10(1 + v), so 0 views still has a place on the axis
+  var sym = function (v) { return Math.log10(1 + Math.max(0, v)); };
+  function symTicks(max) { return [0, 1, 10, 100, 1000, 10000, 100000, 1000000].filter(function (t) { return t <= max * 1.15 || t <= 10; }); }
+
+  // ---------- tooltip ----------
+  var tip = $("tip");
+  function showTip(el, x, y) {
+    var parts = el.getAttribute("data-tip").split("||");
+    tip.innerHTML = "<b>" + esc(parts[0]) + "</b>" + parts.slice(1).map(function (l) { return "<span>" + esc(l) + "</span>"; }).join("");
+    tip.classList.add("on");
+    var r = tip.getBoundingClientRect();
+    var left = Math.min(window.innerWidth - r.width - 8, Math.max(8, x + 14));
+    var top = y - r.height - 12; if (top < 8) top = y + 16;
+    tip.style.left = left + "px"; tip.style.top = top + "px";
   }
+  document.addEventListener("mousemove", function (e) {
+    var el = e.target.closest && e.target.closest("[data-tip]");
+    if (el) showTip(el, e.clientX, e.clientY); else tip.classList.remove("on");
+  });
+  document.addEventListener("focusin", function (e) {
+    var el = e.target.closest && e.target.closest("[data-tip]");
+    if (el) { var r = el.getBoundingClientRect(); showTip(el, r.left + r.width / 2, r.top); } else tip.classList.remove("on");
+  });
+  document.addEventListener("focusout", function () { tip.classList.remove("on"); });
+  window.addEventListener("scroll", function () { tip.classList.remove("on"); }, { passive: true });
+
+  // ---------- router ----------
+  var VIEWS = ["overview", "clips", "channels", "campaigns", "schedule", "todo", "playbook"];
+  var ALIAS = { top: "overview", review: "overview", round: "overview", "todo-sec": "todo", "rules-sec": "playbook" };
+  var draws = {}; // view -> [fn]; charts need a visible container to measure
+  var current = null;
+  function route() {
+    var v = location.hash.slice(1); v = ALIAS[v] || v;
+    if (VIEWS.indexOf(v) < 0) v = "overview";
+    var changed = v !== current; current = v;
+    document.querySelectorAll(".view").forEach(function (s) { s.classList.toggle("on", s.getAttribute("data-view") === v); });
+    document.querySelectorAll("#nav a").forEach(function (a) {
+      if (a.getAttribute("href") === "#" + v) { a.setAttribute("aria-current", "page"); a.scrollIntoView({ block: "nearest", inline: "nearest" }); }
+      else a.removeAttribute("aria-current");
+    });
+    var h = document.querySelector("#v-" + v + " h1");
+    document.title = (v === "overview" ? "" : (h ? h.textContent + " · " : "")) + "Bobelly HQ";
+    redraw();
+    if (changed) window.scrollTo(0, 0);
+  }
+  function redraw() { (draws[current] || []).forEach(function (f) { f(); }); }
+  function onView(v, fn) { (draws[v] = draws[v] || []).push(fn); }
+  window.addEventListener("hashchange", route);
+  var rT; window.addEventListener("resize", function () { clearTimeout(rT); rT = setTimeout(redraw, 120); });
 
   function render(d) {
     var posts = d.posts.slice().sort(function (a, b) { return new Date(a.posted) - new Date(b.posted); });
+    var now = new Date(d.updated);
     var chanByKey = {}; d.channels.forEach(function (c) { chanByKey[c.key] = c; });
     var campBySlug = {}; d.campaigns.forEach(function (c) { campBySlug[c.slug] = c; });
     var isSubmitted = function (p) { return p.submitted && p.submitted !== "no record" && p.submitted !== "unpaid"; };
+    var isStalled = function (p) { return p.platform === "YouTube" && p.views < 50 && (now - new Date(p.posted)) / 36e5 > 6; };
+    var sum = function (arr) { return arr.reduce(function (s, p) { return s + (p.views || 0); }, 0); };
+    var pfLegend = PLATFORMS.filter(function (pf) { return posts.some(function (p) { return p.platform === pf; }); }).map(function (pf) { return [PF[pf], pf]; });
 
-    $("updated").textContent = d.updated_label;
+    $("stamp").textContent = d.updated_label.replace(/^\w+ /, "");
+    $("ov-eyebrow").textContent = "Snapshot · " + d.updated_label;
 
-    // KPIs
-    var total = posts.reduce(function (s, p) { return s + (p.views || 0); }, 0);
-    var submittedViews = posts.filter(isSubmitted).reduce(function (s, p) { return s + p.views; }, 0);
-    var best = posts.reduce(function (a, b) { return b.views > a.views ? b : a; });
-    var stuck = posts.filter(function (p) { return p.platform === "YouTube" && p.views < 50 && (new Date(d.updated) - new Date(p.posted)) / 36e5 > 6; });
+    // ===================== OVERVIEW =====================
+    var total = sum(posts);
+    var submittedViews = sum(posts.filter(isSubmitted));
+    var byViews = posts.slice().sort(function (a, b) { return b.views - a.views; });
+    var best = byViews[0];
+    var top3 = sum(byViews.slice(0, 3));
+    var stuck = posts.filter(isStalled);
+    var subs = d.channels.reduce(function (s, c) { return s + (c.subscribers || 0); }, 0);
+
+    $("h-overview").innerHTML = "<em>" + fmt(total) + "</em> views so far. " + (total ? "The top 3 posts made " + Math.round(top3 / total * 100) + "% of them." : "");
+    $("ov-lede").textContent = posts.length + " posts on " + d.channels.filter(function (c) { return c.posts > 0; }).length +
+      " accounts. New clips wait for your OK in Telegram before anything goes live.";
+
     var kpis = [
-      { e: "Views, all posts", v: fmt(total), s: posts.length + " posts on " + d.channels.filter(function (c) { return c.posts > 0; }).length + " accounts" },
-      { e: "Submitted views", v: fmt(submittedViews), s: "what Content Rewards can count" },
-      { e: "Best post", v: fmt(best.views), s: best.title.slice(0, 42) + (best.title.length > 42 ? "…" : "") },
-      { e: "Subscribers", v: fmt(d.channels.reduce(function (s, c) { return s + (c.subscribers || 0); }, 0)), s: "both YouTube channels" },
-      { e: "Paid out", v: "$0", s: "pools pay when the marathons end" }
+      { e: "Views, all posts", v: short(total), s: posts.length + " posts", cls: "dark" },
+      { e: "Submitted views", v: short(submittedViews), s: "what Content Rewards can count" },
+      { e: "Best post", v: short(best.views), s: best.title.slice(0, 40) + (best.title.length > 40 ? "…" : "") },
+      { e: "Stalled Shorts", v: String(stuck.length), s: "under 50 views after 6 h" },
+      { e: "Subscribers", v: fmt(subs), s: "both YouTube channels" },
+      { e: "Paid out", v: "$0", s: "pools pay when marathons end" }
     ];
     $("kpis").innerHTML = kpis.map(function (k) {
-      return '<div class="kpi"><span class="eyebrow">' + esc(k.e) + '</span><span class="v">' + esc(k.v) + '</span><span class="s">' + esc(k.s) + "</span></div>";
+      return '<div class="kpi ' + (k.cls || "") + '"><span class="eyebrow">' + esc(k.e) + '</span><span class="v">' + esc(k.v) + '</span><span class="s">' + esc(k.s) + "</span></div>";
     }).join("");
 
     if (stuck.length) {
-      var a = $("alert");
-      a.hidden = false;
-      a.innerHTML = '<span class="tag">Hold</span><p><b>' + stuck.length + " YouTube Shorts have under 50 views after 6+ hours.</b> Both YouTube channels count as stalled.</p>" +
-        "<p>A stalled channel still posts, but only 1 clip a day, until its Shorts get views again. YouTube Studio should show why. See the to-do list.</p>";
+      $("alert").hidden = false;
+      $("alert").innerHTML = '<span class="tag">⚠ Hold</span><p><b>' + stuck.length + " YouTube Shorts have under 50 views after 6+ hours.</b> Both YouTube channels count as stalled.</p>" +
+        "<p class=\"small muted\">A stalled channel still posts, but only 1 clip a day, until its Shorts get views again. YouTube Studio should show why. See the <a href=\"#todo\">to-do list</a>.</p>";
     }
 
-    // Chart
-    var max = Math.max.apply(null, posts.map(function (p) { return p.views; }));
-    var rows = ['<div class="chart-head"><span>Posted (CET)</span><span>Views, to scale</span><span style="text-align:right">Views</span></div>'];
-    var prev = null, prevDay = null;
-    posts.forEach(function (p) {
-      var day = ymd.format(new Date(p.posted));
-      if (prevDay && day !== prevDay) rows.push('<div class="divider">' + esc(dayFmt.format(new Date(p.posted))) + "</div>");
-      prevDay = day;
-      var gap = prev && p.platform === "YouTube" && prev.platform === "YouTube" ? (new Date(p.posted) - new Date(prev.posted)) / 6e4 : null;
-      var w = Math.max(0.4, p.views / max * 100);
-      var cls = p.platform === "Instagram" ? "ig" : p.platform === "TikTok" ? "tt" : (p.views < 50 && (new Date(d.updated) - new Date(p.posted)) / 36e5 > 6 ? "low" : "");
-      var on = w > 40 ? " on" : "";
-      rows.push('<div class="bar-row"><div class="when"><span class="num">' + esc(timeFmt.format(new Date(p.posted))) + "</span>" +
-        "<small" + (gap != null && gap < 10 ? ' class="gap"' : "") + ">" + (gap != null ? esc(gapText(gap)) : esc(chanByKey[p.channel].name)) + "</small></div>" +
-        '<div class="track"><div class="fill ' + cls + '" style="width:' + w.toFixed(2) + '%"></div><span class="lbl' + on + '">' + esc(p.title) + "</span></div>" +
-        '<span class="v num">' + fmt(p.views) + "</span></div>");
-      if (p.platform === "YouTube") prev = p;
-    });
-    rows.push('<p class="muted" style="font-size:0.74rem;padding-top:8px">Grey bars: YouTube, Instagram and TikTok (TikTok views from Postiz, can lag). Orange: under 50 views after 6 h. Amber time: under 10 min after the previous upload.</p>');
-    $("chart").innerHTML = rows.join("");
+    legend("lg-timeline", pfLegend.concat([["line", "Stall line, 50 views"]]));
+    onView("overview", function () { drawTimeline($("c-timeline"), posts, now, isStalled); });
+    $("t-timeline").innerHTML = "<table><thead><tr><th>Posted</th><th>Account</th><th>Title</th><th class=\"n\">Views</th></tr></thead><tbody>" +
+      posts.map(function (p) { return "<tr><td class=\"num\">" + esc(timeFmt.format(new Date(p.posted))) + "</td><td>" + esc(chanByKey[p.channel].name) + " · " + esc(p.platform) + "</td><td>" + esc(p.title) + '</td><td class="n">' + fmt(p.views) + "</td></tr>"; }).join("") + "</tbody></table>";
 
-    $("notes").innerHTML = '<span class="eyebrow">What it tells us</span><ol>' +
-      "<li><b>Three Shorts carried the channel.</b> The Lacy launch-moment clips got 755 to 1,225 views each. They went up 13 to 45 minutes apart, before uploads moved to the command-line tool.</li>" +
-      "<li><b>The next six stalled at 1 to 7 views</b> and are still there a day later. Two went up 2 seconds apart and three within 8 minutes. These six also carry <span class=\"mono\">#ad</span> in the description and two run over 40 s. YouTube Studio's traffic sources will show which of these matters.</li>" +
-      "<li><b>Instagram keeps beating YouTube.</b> Both dean mor Reels got 135 to 144 views; the same edits on the dean mor channel got 1 to 4.</li>" +
-      "<li><b>Most views can't be paid.</b> The three Lacy clips that worked were posted before submitting was part of the routine, and the 30-minute window has passed. Submitted views across all pools: " + fmt(submittedViews) + ".</li>" +
+    // platform averages and share of views
+    var pfStats = PLATFORMS.map(function (pf) {
+      var list = posts.filter(function (p) { return p.platform === pf; });
+      return { pf: pf, n: list.length, views: sum(list), avg: list.length ? sum(list) / list.length : 0 };
+    }).filter(function (s) { return s.n; });
+    var maxAvg = Math.max.apply(null, pfStats.map(function (s) { return s.avg; }));
+    $("c-platforms").innerHTML = pfStats.map(function (s) {
+      return '<div class="hbar"' + tipAttr(s.pf, [s.n + " posts", fmt(s.views) + " views in total", fmt(Math.round(s.avg)) + " per post"]) + '><div class="hbar-top"><b><i class="dot ' + PF[s.pf] + '"></i>' + s.pf + '</b><span class="num">' + fmt(Math.round(s.avg)) + '</span></div><div class="hbar-track"><div class="hbar-fill ' + PF[s.pf] + '" style="width:' + (s.avg / maxAvg * 100).toFixed(1) + '%"></div></div><small>' + s.n + " posts · " + fmt(s.views) + " views</small></div>";
+    }).join("");
+    // where views came from: launch-night Lacy trio vs everything else on YouTube vs other platforms
+    var groups = [
+      { n: "Top 3 Lacy launch clips", v: top3 },
+      { n: "Other YouTube Shorts", v: sum(posts.filter(function (p) { return p.platform === "YouTube"; })) - top3 },
+      { n: "Instagram + TikTok", v: sum(posts.filter(function (p) { return p.platform !== "YouTube"; })) }
+    ];
+    $("c-share").innerHTML = groups.map(function (g) {
+      var pct = total ? g.v / total * 100 : 0;
+      return '<div class="hbar"' + tipAttr(g.n, [fmt(g.v) + " views", pct.toFixed(1) + "% of all views"]) + '><div class="hbar-top"><b>' + esc(g.n) + '</b><span class="num">' + pct.toFixed(0) + '%</span></div><div class="hbar-track"><div class="hbar-fill" style="width:' + pct.toFixed(1) + '%"></div></div></div>';
+    }).join("");
+
+    $("notes").innerHTML = "<ol>" +
+      "<li><span><b>Three Shorts carried the channel.</b> The Lacy launch-moment clips got 755 to 1,227 views each. They went up 13 to 45 minutes apart, before uploads moved to the command-line tool.</span></li>" +
+      "<li><span><b>The next six stalled at 1 to 7 views</b> and are still there a day later. Two went up 2 seconds apart and three within 8 minutes. They also carry <span class=\"mono\">#ad</span> and two run over 40 s. YouTube Studio's traffic sources will show which of these matters.</span></li>" +
+      "<li><span><b>Instagram keeps beating YouTube.</b> Both dean mor Reels got 135 to 144 views; the same edits on the dean mor channel got 1 to 4.</span></li>" +
+      "<li><span><b>Most views can't be paid.</b> The three Lacy clips that worked were posted before submitting was part of the routine, and the 30-minute window has passed. Submitted views across all pools: " + fmt(submittedViews) + ".</span></li>" +
       "</ol>";
 
-    // Channels
-    var stages = d.stages;
-    $("chans").innerHTML = d.channels.map(function (c) {
-      var cp = posts.filter(function (p) { return p.channel === c.key; });
-      var views = cp.reduce(function (s, p) { return s + p.views; }, 0);
-      var bestV = cp.length ? Math.max.apply(null, cp.map(function (p) { return p.views; })) : null;
-      var st = stages.filter(function (s) { return s.n === c.stage; })[0];
-      var ladder = stages.map(function (s) { return "<i class=\"" + (s.n < c.stage ? "on" : s.n === c.stage ? "now" : "") + "\"></i>"; }).join("");
-      var pf = c.platform === "Instagram" ? '<span class="pill ig">Instagram</span>' : c.platform === "TikTok" ? '<span class="pill tt">TikTok</span>' : '<span class="pill yt">YouTube</span>';
-      return '<article class="panel chan"><div class="chan-top"><div><h3>' + esc(c.name) + '</h3><a href="' + esc(c.url) + '" target="_blank" rel="noopener">' + esc(c.handle) + " ↗</a></div>" + pf + "</div>" +
-        '<div class="chan-stats"><div><span class="eyebrow">Posts</span><span class="num">' + fmt(c.posts) + '</span></div><div><span class="eyebrow">Views</span><span class="num">' + fmt(views) + '</span></div><div><span class="eyebrow">Best</span><span class="num">' + fmt(bestV) + "</span></div></div>" +
-        '<div style="display:grid;gap:6px"><div class="ladder" aria-hidden="true">' + ladder + '</div><div class="stage-name"><b>' + (st ? "Stage " + st.n + ": " + esc(st.name) : "Not started") + '</b><span class="muted">' + esc(c.streamers.join(", ") || "no streamers yet") + "</span></div>" +
-        '<span class="muted" style="font-size:0.8rem">' + esc(c.limit) + "</span></div>" +
-        '<p class="note">' + esc(c.note) + "</p></article>";
-    }).join("");
-    $("stagekey").innerHTML = stages.map(function (s) { return "<div><b>" + s.n + "</b>" + "<strong style=\"color:var(--ink)\">" + esc(s.name) + ".</strong> " + esc(s.goal) + "</div>"; }).join("");
+    var urgent = d.todo.filter(function (t) { return t.level === "high"; }).concat(d.todo.filter(function (t) { return t.level === "mid"; })).slice(0, 4);
+    $("ov-tasks").innerHTML = urgent.map(function (t) {
+      return '<a href="#todo">' + (t.level === "high" ? '<span class="pill crit">Now</span>' : '<span class="pill">Soon</span>') + "<span>" + esc(t.what) + "</span></a>";
+    }).join("") || '<div class="empty"><b>All clear</b>Nothing urgent.</div>';
 
-    // Clips wall
-    var filter = "all", query = "";
-    try { filter = localStorage.getItem("bobelly-filter") || "all"; } catch (e) {}
-    var opts = [{ k: "all", n: "All" }].concat(d.channels.filter(function (c) { return c.posts > 0; }).map(function (c) { return { k: c.key, n: c.name }; }));
+    // ===================== CLIPS =====================
+    var filter = "all", query = "", sort = "new";
+    try { filter = localStorage.getItem("bobelly-filter") || "all"; sort = localStorage.getItem("bobelly-sort") || "new"; } catch (e) {}
+    var opts = [{ k: "all", n: "All", pf: null }].concat(d.channels.filter(function (c) { return c.posts > 0; }).map(function (c) { return { k: c.key, n: c.name, pf: c.platform }; }));
     if (!opts.some(function (o) { return o.k === filter; })) filter = "all";
+    $("sort").value = sort;
     function drawWall() {
-      $("filters").innerHTML = opts.map(function (o) { return '<button type="button" id="f-' + o.k + '" data-k="' + o.k + '" aria-pressed="' + (o.k === filter) + '">' + esc(o.n) + "</button>"; }).join("");
+      $("filters").innerHTML = opts.map(function (o) {
+        return '<button type="button" data-k="' + o.k + '" aria-pressed="' + (o.k === filter) + '">' + (o.pf ? '<i class="dot ' + PF[o.pf] + '"></i>' : "") + esc(o.n) + "</button>";
+      }).join("");
       var list = posts.slice().reverse().filter(function (p) {
         var c = campBySlug[p.campaign];
         return (filter === "all" || p.channel === filter) &&
-          (!query || (p.title + " " + chanByKey[p.channel].name + " " + (c ? c.name : "")).toLowerCase().indexOf(query) >= 0);
+          (!query || (p.title + " " + p.streamer + " " + chanByKey[p.channel].name + " " + p.platform + " " + (c ? c.name : "unpaid")).toLowerCase().indexOf(query) >= 0);
       });
+      if (sort === "views") list.sort(function (a, b) { return b.views - a.views; });
+      if (sort === "short") list.sort(function (a, b) { return a.secs - b.secs; });
       $("wall").innerHTML = list.map(function (p) {
         var camp = campBySlug[p.campaign];
-        var sub = !camp ? '<span class="pill plain">Unpaid</span>' : isSubmitted(p) ? '<span class="pill good">Submitted</span>' : '<span class="pill warn">Not submitted</span>';
-        var low = p.platform === "YouTube" && p.views < 50 && new Date(d.updated) - new Date(p.posted) >= 6 * 36e5 ? '<span class="pill bad">Stalled</span>' : "";
-        var pf = p.platform === "Instagram" ? '<span class="pill ig">Reel</span>' : p.platform === "TikTok" ? '<span class="pill tt">TikTok</span>' : '<span class="pill">' + esc(chanByKey[p.channel].name) + "</span>";
+        var sub = !camp ? '<span class="pill plain">Unpaid</span>' : isSubmitted(p) ? '<span class="pill ok">✓ Submitted</span>' : '<span class="pill">Not submitted</span>';
+        var pf = '<span class="pill"><i class="dot ' + PF[p.platform] + '"></i>' + esc(p.platform === "Instagram" ? "Reel" : p.platform === "TikTok" ? "TikTok" : chanByKey[p.channel].name) + "</span>";
         return '<a class="clip" href="' + esc(p.url) + '" target="_blank" rel="noopener"><div class="frame"><img loading="lazy" alt="" src="thumbs/' + esc(p.thumb || p.id) + '.jpg">' +
-          '<div class="corner">' + pf + '</div><div class="over"><span class="num">' + fmt(p.views) + '<small> views</small></span><small>' + p.secs + " s · " + esc(ageText(p.posted, d.updated)) + " old</small></div></div>" +
-          '<span class="clip-title">' + esc(p.title) + '</span><div class="clip-meta">' + sub + low + (camp ? '<span class="pill plain">' + esc(camp.name.split(" ")[0]) + "</span>" : "") + "</div></a>";
-      }).join("") || '<p class="muted">No clips match “' + esc(query) + '”.</p>';
+          '<div class="corner">' + pf + (isStalled(p) ? '<span class="pill crit">Stalled</span>' : "") + '</div><div class="over"><span><span class="big">' + short(p.views) + '</span> <small>views</small></span><small>' + p.secs + " s · " + esc(ageText(p.posted, d.updated)) + "</small></div></div>" +
+          '<span class="clip-title">' + esc(p.title) + '</span><div class="clip-meta">' + sub + (camp ? '<span class="pill plain">' + esc(p.streamer) + "</span>" : "") + "</div></a>";
+      }).join("") || '<div class="empty"><b>No clips match</b>Try another search or account.</div>';
     }
     $("filters").addEventListener("click", function (e) {
       var b = e.target.closest("button"); if (!b) return;
@@ -496,88 +692,140 @@ footer { font-size: 0.78rem; color: var(--muted); display: grid; gap: 4px; borde
       try { localStorage.setItem("bobelly-filter", filter); } catch (err) {}
       drawWall();
     });
+    $("sort").addEventListener("change", function () { sort = this.value; try { localStorage.setItem("bobelly-sort", sort); } catch (err) {} drawWall(); });
+    $("search").addEventListener("input", function () { query = this.value.trim().toLowerCase(); drawWall(); });
     drawWall();
+    legend("lg-scatter", pfLegend);
+    onView("clips", function () { drawScatter($("c-scatter"), posts); });
     $("gone").innerHTML = d.gone.map(function (g) { return "Removed: <span class=\"mono\">" + esc(g.id) + "</span> “" + esc(g.title) + "”. " + esc(g.why); }).join(" ");
 
-    // Campaigns
+    // ===================== CHANNELS =====================
+    var stages = d.stages;
+    $("chans").innerHTML = d.channels.map(function (c) {
+      var cp = posts.filter(function (p) { return p.channel === c.key; });
+      var views = sum(cp);
+      var bestV = cp.length ? Math.max.apply(null, cp.map(function (p) { return p.views; })) : null;
+      var st = stages.filter(function (s) { return s.n === c.stage; })[0];
+      var ladder = stages.map(function (s) { return '<i class="' + (s.n < c.stage ? "on" : s.n === c.stage ? "now" : "") + '"></i>'; }).join("");
+      var stalled = cp.some(isStalled);
+      return '<article class="panel chan"><div class="chan-top"><div><h3>' + esc(c.name) + '</h3><a href="' + esc(c.url) + '" target="_blank" rel="noopener">' + esc(c.handle) + " ↗</a></div>" +
+        '<span style="display:grid;gap:4px;justify-items:end"><span class="pill"><i class="dot ' + PF[c.platform] + '"></i>' + esc(c.platform) + "</span>" + (stalled ? '<span class="pill crit">Stalled</span>' : "") + "</span></div>" +
+        '<div class="chan-stats"><div><span class="eyebrow">Posts</span><span class="num">' + fmt(c.posts) + '</span></div><div><span class="eyebrow">Views</span><span class="num">' + fmt(views) + '</span></div><div><span class="eyebrow">Best</span><span class="num">' + fmt(bestV) + "</span></div></div>" +
+        '<div><div class="ladder" role="img" aria-label="' + (st ? "Stage " + st.n + " of 4" : "Not started") + '">' + ladder + '</div><div class="stage-name"><b>' + (st ? "Stage " + st.n + " · " + esc(st.name) : "Not started") + '</b><span class="muted">' + esc(c.streamers.join(", ") || "no streamers yet") + "</span></div>" +
+        '<span class="small muted">' + esc(c.limit) + "</span></div>" +
+        '<p class="note">' + esc(c.note) + "</p></article>";
+    }).join("");
+    $("stagekey").innerHTML = stages.map(function (s) { return '<div><span class="num">STAGE ' + s.n + "</span><b>" + esc(s.name) + "</b>" + esc(s.goal) + "</div>"; }).join("");
+
+    var accStats = d.channels.map(function (c) { var cp = posts.filter(function (p) { return p.channel === c.key; }); return { c: c, n: cp.length, v: sum(cp) }; })
+      .filter(function (a) { return a.n; }).sort(function (a, b) { return b.v - a.v; });
+    var maxAcc = Math.max.apply(null, accStats.map(function (a) { return a.v; })) || 1;
+    $("c-accounts").innerHTML = accStats.map(function (a) {
+      return '<div class="hbar"' + tipAttr(a.c.name + " (" + a.c.platform + ")", [a.n + " posts", fmt(a.v) + " views", fmt(Math.round(a.v / a.n)) + " per post"]) + '><div class="hbar-top"><b><i class="dot ' + PF[a.c.platform] + '"></i>' + esc(a.c.name) + ' <span class="muted small" style="font-weight:400">' + esc(a.c.platform) + '</span></b><span class="num">' + fmt(a.v) + '</span></div><div class="hbar-track"><div class="hbar-fill ' + PF[a.c.platform] + '" style="width:' + (a.v / maxAcc * 100).toFixed(1) + '%"></div></div><small>' + a.n + " posts · " + fmt(Math.round(a.v / a.n)) + " per post</small></div>";
+    }).join("");
+
+    var edits = {};
+    posts.forEach(function (p) { var k = p.thumb || p.id; (edits[k] = edits[k] || []).push(p); });
+    var multi = Object.keys(edits).map(function (k) { return edits[k]; }).filter(function (g) { return g.length > 1; });
+    legend("lg-dumbbell", pfLegend);
+    onView("channels", function () { drawDumbbell($("c-dumbbell"), multi); });
+
+    // ===================== CAMPAIGNS =====================
     var pools = d.campaigns.filter(function (c) { return c.kind === "pool"; });
     var cpms = d.campaigns.filter(function (c) { return c.kind === "cpm"; });
     function campStats(c) {
       var cp = posts.filter(function (p) { return p.campaign === c.slug; });
-      return { n: cp.length, views: cp.reduce(function (s, p) { return s + p.views; }, 0), sub: cp.filter(isSubmitted).reduce(function (s, p) { return s + p.views; }, 0) };
+      return { n: cp.length, views: sum(cp), sub: sum(cp.filter(isSubmitted)) };
     }
-    function statusPill(c, s) {
-      if (!s.n) return '<span class="pill plain">No posts yet</span>';
-      return '<span class="pill good">Posting</span>';
+    $("lg-pools").innerHTML = '<span><i class="sw bar" style="background:color-mix(in srgb,var(--brand) 30%,var(--surface))"></i>All views on campaign posts</span><span><i class="sw bar" style="background:var(--brand)"></i>Submitted views</span><span><i class="sw bar" style="background:var(--ink);width:3px;height:12px"></i>Minimum to get paid</span>';
+    var poolRows = pools.map(function (c) { var s = campStats(c); return { c: c, s: s }; });
+    onView("campaigns", function () { drawPools($("c-pools"), poolRows); });
+
+    // CPM calculator: parse "$2.00 / 1K", "$20 min", "max $150"
+    var cpmRows = cpms.map(function (c) {
+      var rate = (c.pay.match(/\$([\d.]+)\s*\/\s*1K/i) || [])[1];
+      var min = (c.pay.match(/\$([\d,]+)\s*min/i) || [])[1];
+      var max = (c.pay.match(/max\s*\$([\d,]+)/i) || c.pay.match(/\$([\d,]+)\s*max/i) || [])[1];
+      return { c: c, rate: +rate || 0, min: min ? +min.replace(",", "") : 0, max: max ? +max.replace(",", "") : Infinity };
+    });
+    var sliderViews = function (v) { return Math.round(Math.pow(10, 3 + v / 100 * 3) / 1000) * 1000; }; // 1K .. 1M, log
+    function drawCpm() {
+      var views = sliderViews(+$("views-slider").value);
+      $("views-out").textContent = fmt(views);
+      var rows = cpmRows.map(function (r) {
+        var raw = r.rate * views / 1000;
+        var pay = raw < r.min ? 0 : Math.min(raw, r.max);
+        return { r: r, raw: raw, pay: pay };
+      });
+      var maxPay = Math.max.apply(null, rows.map(function (x) { return x.pay; })) || 1;
+      $("c-cpm").innerHTML = rows.map(function (x) {
+        var note = x.raw < x.r.min ? "under the $" + x.r.min + " minimum payout" : x.raw > x.r.max ? "capped at $" + x.r.max + " a clip" : "$" + x.r.rate.toFixed(2) + " per 1K views";
+        return '<div class="hbar"' + tipAttr(x.r.c.name, [x.r.c.pay, x.r.c.budget || "", x.r.c.limit || ""].filter(Boolean)) + '><div class="hbar-top"><b>' + esc(x.r.c.name) + '</b><span class="num">$' + fmt(Math.round(x.pay)) + '</span></div><div class="hbar-track"><div class="hbar-fill" style="width:' + (x.pay / maxPay * 100).toFixed(1) + '%"></div></div><small>' + esc(note) + (x.r.c.limit ? " · " + esc(x.r.c.limit) : "") + "</small></div>";
+      }).join("");
     }
-    var t = ['<table><thead><tr><th>Campaign</th><th>Pay</th><th>Posts</th><th>Progress</th><th>Account · tag</th></tr></thead><tbody>'];
-    t.push('<tr class="group-row"><td colspan="5">Pools: share of a fixed pot</td></tr>');
+    $("views-slider").addEventListener("input", drawCpm);
+    drawCpm();
+
+    var t = ['<table><thead><tr><th>Campaign</th><th>Pay</th><th class="n">Posts</th><th class="n">Views</th><th class="n">Submitted</th><th>Account · tag</th></tr></thead><tbody>'];
+    t.push('<tr class="group-row"><td colspan="6">Pools: share of a fixed pot</td></tr>');
     pools.forEach(function (c) {
       var s = campStats(c);
-      var pct = s.sub / c.min_views * 100;
-      t.push("<tr><td><b>" + esc(c.name) + '</b><span class="sub">' + esc(c.agency) + "</span></td><td>" + esc(c.pay) + "</td>" +
-        '<td><span class="num">' + s.n + "</span><span class=\"sub\">" + fmt(s.views) + " views</span></td>" +
-        '<td><div class="meter"><div class="row"><span class="num">' + fmt(s.sub) + ' submitted</span><span class="num muted">' + (pct < 0.01 && pct > 0 ? "<0.01" : pct.toFixed(2)) + '%</span></div><div class="track"><div class="fill" style="width:' + Math.max(pct, s.sub ? 0.6 : 0) + '%"></div></div><span class="sub">needs ' + fmt(c.min_views) + " views</span></div></td>" +
-        "<td>" + esc(c.channel || "–") + '<span class="sub mono">' + esc(c.tag) + "</span></td></tr>");
+      t.push("<tr><td><b>" + esc(c.name) + '</b><span class="sub">' + esc(c.agency) + " · needs " + short(c.min_views) + " views</span></td><td>" + esc(c.pay) + '</td><td class="n">' + s.n + '</td><td class="n">' + fmt(s.views) + '</td><td class="n">' + fmt(s.sub) + "</td><td>" + esc(c.channel || "–") + '<span class="sub mono">' + esc(c.tag) + "</span></td></tr>");
     });
-    t.push('<tr class="group-row"><td colspan="5">Per view (CPM): paid per 1,000 views from a budget</td></tr>');
+    t.push('<tr class="group-row"><td colspan="6">Per view: paid per 1,000 views from a budget</td></tr>');
     cpms.forEach(function (c) {
       var s = campStats(c);
-      t.push("<tr><td><b>" + esc(c.name) + '</b><span class="sub">' + esc(c.agency) + (c.limit ? " · " + esc(c.limit) : "") + "</span></td><td>" + esc(c.pay) + '<span class="sub">' + esc(c.budget || "") + "</span></td>" +
-        '<td><span class="num">' + s.n + "</span></td><td>" + statusPill(c, s) + "</td><td>" + esc(c.channel || "Not assigned") + '<span class="sub mono">' + esc(c.tag) + "</span></td></tr>");
+      t.push("<tr><td><b>" + esc(c.name) + '</b><span class="sub">' + esc(c.agency) + (c.limit ? " · " + esc(c.limit) : "") + "</span></td><td>" + esc(c.pay) + '<span class="sub">' + esc(c.budget || "") + '</span></td><td class="n">' + s.n + '</td><td class="n">' + fmt(s.views) + '</td><td class="n">' + fmt(s.sub) + "</td><td>" + esc(c.channel || "Not assigned") + '<span class="sub mono">' + esc(c.tag) + "</span></td></tr>");
     });
     t.push("</tbody></table>");
     $("camps").innerHTML = t.join("");
 
-    // Schedule week
-    var start = new Date(d.updated);
+    // ===================== SCHEDULE =====================
+    function nextRunMins(at) {
+      var p = cetParts(at), nowMin = p.h * 60 + p.m, best = null, idx = 0;
+      d.runs.times.forEach(function (s, i) { var x = s.split(":"), dd = +x[0] * 60 + +x[1] - nowMin; if (dd <= 0) dd += 1440; if (best == null || dd < best) { best = dd; idx = i; } });
+      return { mins: best, idx: idx };
+    }
+    var hmText = function (m) { return Math.floor(m / 60) + " h " + (m % 60 < 10 ? "0" : "") + (m % 60) + " min"; };
+    function drawRuns() {
+      var nr = nextRunMins(new Date());
+      $("side-next").textContent = "in " + hmText(nr.mins);
+      $("side-next-sub").textContent = d.runs.times[nr.idx] + " CET · " + d.runs.ny[nr.idx] + " NY";
+      $("runs").innerHTML = d.runs.times.map(function (tm, i) {
+        var nx = i === nr.idx;
+        return '<div class="panel run-card' + (nx ? " next" : "") + '"><span class="eyebrow">' + (nx ? "Next run · in " + hmText(nr.mins) : "Daily run") + '</span><span class="big num">' + tm + '</span><span class="small muted">CET · ' + d.runs.ny[i] + " in New York</span></div>";
+      }).join("") + '<div class="panel run-card"><span class="eyebrow">Each run</span><span class="small muted">Checks campaigns, finds moments under 48 h old, cuts, reviews, then sends the clips the strategy picks to you in Telegram. If the Mac was off, the missed run starts when it wakes.</span></div>';
+    }
+    drawRuns();
+    setInterval(drawRuns, 30000);
+    legend("lg-clock", pfLegend);
+    onView("schedule", function () { drawClock($("c-clock"), posts, d.runs); });
+
     var days = [];
-    for (var i = 0; i < 8; i++) days.push(new Date(start.getTime() + i * 864e5));
+    for (var i = 0; i < 8; i++) days.push(new Date(now.getTime() + i * 864e5));
     var bumpDay = "2026-11-26";
     var holdNow = stuck.length > 0;
-    function cap(dayStr, before, after) { return dayStr >= bumpDay ? after : before; }
+    var cap = function (ds, before, after) { return ds >= bumpDay ? after : before; };
     var acc = [
-      { n: "Bobelly (YouTube)", c: function () { return 3; }, hold: true },
-      { n: "dean mor (YouTube)", c: function (ds) { return cap(ds, 1, 2); }, hold: true },
-      { n: "@deanmor93 (Reels)", c: function (ds) { return cap(ds, 1, 2); }, hold: false }
+      { n: "Bobelly", pf: "YouTube", c: function () { return 3; }, hold: true },
+      { n: "dean mor", pf: "YouTube", c: function (ds) { return cap(ds, 1, 2); }, hold: true },
+      { n: "@deanmor93 Reels", pf: "Instagram", c: function (ds) { return cap(ds, 1, 2); }, hold: false }
     ];
-    var w = ['<table><thead><tr><th>Max posts</th>'];
-    days.forEach(function (dt, i) { var ds = ymd.format(dt); w.push('<th class="' + (i === 0 ? "today" : "") + (ds === bumpDay ? " bump" : "") + '">' + esc(dayFmt.format(dt).replace(",", "")) + "</th>"); });
+    var w = ['<div class="panel-head" style="padding:0"><h2>Max posts per day</h2><p>From 26 Nov dean mor and the Reels go up to 2 a day (filled). Outlined red: held to 1 by the stall rule. TikTok follows its channel twin.</p></div><table><thead><tr><th>Account</th>'];
+    days.forEach(function (dt, i) { w.push('<th class="' + (i === 0 ? "today" : "") + '">' + esc(dayShort.format(dt)) + "</th>"); });
     w.push("</tr></thead><tbody>");
     acc.forEach(function (a) {
-      w.push("<tr><td>" + esc(a.n) + "</td>");
+      w.push('<tr><td><i class="dot ' + PF[a.pf] + '"></i> ' + esc(a.n) + "</td>");
       days.forEach(function (dt, i) {
-        var ds = ymd.format(dt);
-        var v = a.c(ds);
-        w.push('<td class="' + (i === 0 ? "today" : "") + '"><span class="cap' + (holdNow && a.hold && i < 2 ? " hold" : "") + (ds === bumpDay && v > 1 && a.n.indexOf("Bobelly") < 0 ? " bump" : "") + '">' + v + "</span></td>");
+        var ds = ymd.format(dt), v = a.c(ds), held = holdNow && a.hold && i < 2;
+        w.push('<td class="' + (i === 0 ? "today" : "") + '"><span class="cap' + (held ? " hold" : v > 1 ? " up" : "") + '"' + (held ? ' title="Held to 1 while stalled"' : "") + ">" + (held ? 1 : v) + "</span></td>");
       });
       w.push("</tr>");
     });
     w.push("</tbody></table>");
-    w.push('<p class="muted" style="font-size:0.78rem;padding:10px 14px 14px">Runs at ' + d.runs.times.join(" and ") + " CET (" + d.runs.ny.join(" and ") + " New York). From 26 Nov dean mor and the Reels go up to 2 a day. Red numbers: held by the health check until the stalled Shorts are sorted out. Dasgasd3m submissions close 19 Dec.</p>");
     $("week").innerHTML = w.join("");
 
-    // Runs + countdown
-    function nextRun(now) {
-      var parts = {};
-      new Intl.DateTimeFormat("en-GB", { timeZone: TZ, hour: "2-digit", minute: "2-digit", hour12: false }).formatToParts(now).forEach(function (p) { parts[p.type] = p.value; });
-      var nowMin = (+parts.hour % 24) * 60 + (+parts.minute);
-      var slots = d.runs.times.map(function (s) { var x = s.split(":"); return +x[0] * 60 + +x[1]; });
-      var diff = null;
-      slots.forEach(function (m) { var dd = m - nowMin; if (dd <= 0) dd += 1440; if (diff == null || dd < diff) diff = dd; });
-      return diff;
-    }
-    function drawRuns() {
-      var mins = nextRun(new Date());
-      var h = Math.floor(mins / 60), m = mins % 60;
-      $("runs").innerHTML = '<span class="eyebrow">Daily automatic runs</span><div class="times">' +
-        d.runs.times.map(function (t, i) { return '<div class="time"><span class="num">' + t + "</span><small>CET · " + d.runs.ny[i] + " New York</small></div>"; }).join("") +
-        '</div><p class="countdown">Next run in <b class="num">' + h + " h " + (m < 10 ? "0" : "") + m + " min</b>.</p>" +
-        '<p class="muted" style="font-size:0.8rem">Each run: check campaigns, find moments under 48 h old, cut, review, then send the clips the strategy picks to you in Telegram. Nothing posts without your tap.</p>';
-    }
-    drawRuns();
-    setInterval(drawRuns, 30000);
-
+    // ===================== QUEUE (overview) =====================
     function until(iso) {
       var m = Math.round((new Date(iso) - new Date()) / 6e4);
       return m <= 0 ? "now" : m >= 60 ? Math.floor(m / 60) + " h " + (m % 60) + " min" : m + " min";
@@ -587,89 +835,214 @@ footer { font-size: 0.78rem; color: var(--muted); display: grid; gap: 4px; borde
       $("queue").innerHTML = q.length ? q.map(function (q) {
         var when = q.post_at ? "Posts in " + until(q.post_at) : q.deadline ? "Stale in " + until(q.deadline) : "";
         var soon = q.deadline && !q.post_at && new Date(q.deadline) - new Date() < 6 * 36e5;
-        return '<article class="panel qcard' + (soon ? " soon" : "") + '" data-search="' + esc((q.title + " " + q.channel + " " + q.campaign).toLowerCase()) + '">' +
-          '<span class="eyebrow">' + esc(q.channel) + " · " + esc(q.campaign || "unpaid") + " · moment " + esc(q.moment) + "</span>" +
+        return '<article class="qcard' + (soon ? " soon" : "") + '"><span class="eyebrow">' + esc(q.channel) + " · " + esc(q.campaign || "unpaid") + " · moment " + esc(q.moment) + "</span>" +
           "<b>" + esc(q.title) + "</b><p>" + esc(q.state) + "</p>" +
-          (when ? '<span><span class="pill ' + (soon ? "bad" : q.post_at ? "good" : "plain") + '">' + esc(when) + "</span></span>" : "") + "</article>";
-      }).join("") : '<div class="panel qcard"><b>Nothing waiting</b><p>The next run sends new clips to Telegram when the strategy has a slot for them.</p></div>';
-      $("n-review").textContent = q.length || "";
-      $("t-review").classList.toggle("hot", q.length > 0);
-      // top bar: the most urgent deadline, else the next run
-      var next = q.filter(function (x) { return x.deadline && !x.post_at; })[0];
-      var mins = nextRun(new Date());
-      $("due").innerHTML = next
-        ? "Stale in <b>" + esc(until(next.deadline)) + "</b> · " + esc(next.title)
-        : "Next run in <b>" + Math.floor(mins / 60) + " h " + (mins % 60) + " min</b>";
-      $("due").setAttribute("href", next ? "#review" : "#schedule");
+          (when ? '<span><span class="pill ' + (soon ? "crit" : "plain") + '">' + esc(when) + "</span></span>" : "") + "</article>";
+      }).join("") : '<div class="empty"><b>Nothing waiting</b>The next run sends new clips to Telegram when the strategy has a slot for them.</div>';
+      var n = $("n-overview"); n.textContent = q.length || ""; n.classList.toggle("hot", q.length > 0);
       if (q.length) {
-        $("headline").innerHTML = (q.length === 1 ? "<em>1 clip</em> is" : "<em>" + q.length + " clips</em> are") + " waiting for your OK";
-        $("lede").textContent = "Tap ✅ Post, ✏️ Change or 🗑 Drop under each clip in Telegram." + (next ? " The first one goes stale in " + until(next.deadline) + "." : "");
+        var next = q.filter(function (x) { return x.deadline && !x.post_at; })[0];
+        $("h-overview").innerHTML = (q.length === 1 ? "<em>1 clip</em> is" : "<em>" + q.length + " clips</em> are") + " waiting for your OK";
+        $("ov-lede").textContent = "Tap ✅ Post, ✏️ Change or 🗑 Drop under each clip in Telegram." + (next ? " The first one goes stale in " + until(next.deadline) + "." : "");
       }
     }
     drawQueue();
     setInterval(drawQueue, 60000);
 
-    // To-do
+    // ===================== TO-DO =====================
     var done = {};
     try { done = JSON.parse(localStorage.getItem("bobelly-done") || "{}"); } catch (e) {}
-    $("todo").innerHTML = d.todo.map(function (t, i) {
-      var pill = t.level === "high" ? '<span class="pill bad">Now</span>' : t.level === "mid" ? '<span class="pill warn">Soon</span>' : '<span class="pill plain">When you can</span>';
-      var id = "todo-" + i;
-      return '<div class="panel task' + (done[t.what] ? " done" : "") + '"><input type="checkbox" id="' + id + '" data-w="' + esc(t.what) + '"' + (done[t.what] ? " checked" : "") + '><label for="' + id + '">' + esc(t.what) + " " + pill + "</label><p>" + esc(t.detail) + "</p></div>";
+    var LEVELS = [["high", "Now", "crit"], ["mid", "Soon", ""], ["low", "When you can", "plain"]];
+    function drawTodo() {
+      var n = d.todo.filter(function (t) { return done[t.what]; }).length;
+      $("todo-progress").innerHTML = '<div class="hbar-top"><b>' + n + " of " + d.todo.length + ' done</b><span class="num muted">' + Math.round(n / d.todo.length * 100) + '%</span></div><div class="hbar-track"><div class="hbar-fill" style="width:' + (n / d.todo.length * 100) + '%"></div></div>';
+      $("n-todo").textContent = (d.todo.length - n) || "";
+      $("n-todo").classList.toggle("hot", d.todo.some(function (t) { return t.level === "high" && !done[t.what]; }));
+    }
+    $("todo").innerHTML = LEVELS.map(function (L) {
+      var items = d.todo.map(function (t, i) { return { t: t, i: i }; }).filter(function (x) { return x.t.level === L[0]; });
+      if (!items.length) return "";
+      return '<div class="todo-group"><h3><span class="pill ' + L[2] + '">' + L[1] + "</span>" + items.length + " task" + (items.length > 1 ? "s" : "") + "</h3>" + items.map(function (x) {
+        var id = "todo-" + x.i;
+        return '<div class="panel task' + (done[x.t.what] ? " done" : "") + '"><input type="checkbox" id="' + id + '" data-w="' + esc(x.t.what) + '"' + (done[x.t.what] ? " checked" : "") + '><label for="' + id + '">' + esc(x.t.what) + "</label><p>" + esc(x.t.detail) + "</p></div>";
+      }).join("") + "</div>";
     }).join("");
     $("todo").addEventListener("change", function (e) {
       var cb = e.target; if (cb.type !== "checkbox") return;
       done[cb.getAttribute("data-w")] = cb.checked;
       cb.closest(".task").classList.toggle("done", cb.checked);
       try { localStorage.setItem("bobelly-done", JSON.stringify(done)); } catch (err) {}
+      drawTodo();
     });
+    drawTodo();
 
-    $("n-todo").textContent = d.todo.length;
     $("n-clips").textContent = posts.length;
     $("n-chans").textContent = d.channels.length;
     $("n-camps").textContent = d.campaigns.length;
-
-    // search: filters the clip wall and the review queue as you type
-    $("search").addEventListener("input", function () {
-      query = this.value.trim().toLowerCase();
-      drawWall();
-      document.querySelectorAll("#queue .qcard[data-search]").forEach(function (el) { el.hidden = query && el.getAttribute("data-search").indexOf(query) < 0; });
-    });
-    $("search").addEventListener("keydown", function (e) { if (e.key === "Enter") $("clips").scrollIntoView({ behavior: "smooth" }); });
-
     $("foot").innerHTML = "<span>Snapshot " + esc(d.updated_label) + ". Sources: " + esc(d.sources) + ".</span><span>Views are raw platform counts. Content Rewards approves views on its own schedule, so pool numbers there will differ.</span>";
+
+    route();
+  }
+
+  // ===================== CHARTS (inline SVG) =====================
+  function svg(w, h, body, label) { return '<svg viewBox="0 0 ' + w + " " + h + '" width="' + w + '" height="' + h + '" role="img" aria-label="' + esc(label) + '">' + body + "</svg>"; }
+  function symAxis(top, sy, x0, x1) {
+    return symTicks(top).map(function (t) {
+      var y = sy(t).toFixed(1);
+      return '<line class="' + (t === 0 ? "baseline" : "gridline") + '" x1="' + x0 + '" x2="' + x1 + '" y1="' + y + '" y2="' + y + '"/><text x="' + (x0 - 8) + '" y="' + y + '" dy="0.35em" text-anchor="end">' + short(t) + "</text>";
+    }).join("");
+  }
+  function dotMark(cx, cy, cls, r, tip) {
+    return "<circle class=\"hit\" cx=\"" + cx.toFixed(1) + "\" cy=\"" + cy.toFixed(1) + "\" r=\"12\"" + tip + "/>" +
+      '<circle class="mark ' + cls + '" cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="' + r + '" pointer-events="none"/>';
+  }
+
+  function drawTimeline(el, posts, now, isStalled) {
+    var W = el.clientWidth, H = W < 520 ? 260 : 320, m = { t: 14, r: 14, b: 34, l: 40 };
+    var t0 = new Date(posts[0].posted).getTime() - 2 * 36e5, t1 = now.getTime() + 36e5;
+    var maxV = Math.max.apply(null, posts.map(function (p) { return p.views; }));
+    var top = sym(maxV) * 1.12;
+    var sx = function (t) { return m.l + (t - t0) / (t1 - t0) * (W - m.l - m.r); };
+    var sy = function (v) { return H - m.b - sym(v) / top * (H - m.t - m.b); };
+    var b = symAxis(maxV, sy, m.l, W - m.r);
+    // x ticks on whole CET hours: midnight gets the day, 06/12/18 get the time
+    var step = W < 520 ? 12 : 6;
+    for (var t = Math.ceil(t0 / 36e5) * 36e5; t <= t1; t += 36e5) {
+      var p = cetParts(new Date(t));
+      if (p.h % step) continue;
+      var x = sx(t).toFixed(1);
+      b += '<line class="gridline" x1="' + x + '" x2="' + x + '" y1="' + (H - m.b) + '" y2="' + (H - m.b + 5) + '"/>';
+      b += '<text x="' + x + '" y="' + (H - m.b + 18) + '" text-anchor="middle"' + (p.h === 0 ? ' style="fill:var(--ink2);font-weight:600"' : "") + ">" + (p.h === 0 ? dayShort.format(new Date(t)) : (p.h < 10 ? "0" : "") + p.h + ":00") + "</text>";
+    }
+    var y50 = sy(50).toFixed(1);
+    b += '<line class="threshold" x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + y50 + '" y2="' + y50 + '"/><text class="threshold-lbl" x="' + (m.l + 6) + '" y="' + (+y50 + 14) + '">stall line · 50</text>';
+    b += '<line class="run" x1="' + sx(now.getTime()).toFixed(1) + '" x2="' + sx(now.getTime()).toFixed(1) + '" y1="' + m.t + '" y2="' + (H - m.b) + '"/><text class="run-lbl" x="' + (sx(now.getTime()) - 4).toFixed(1) + '" y="' + (m.t + 8) + '" text-anchor="end">snapshot</text>';
+    // draw biggest last so it sits on top; label the best post directly
+    posts.slice().sort(function (a, b) { return a.views - b.views; }).forEach(function (p) {
+      var cx = sx(new Date(p.posted).getTime()), cy = sy(p.views);
+      b += dotMark(cx, cy, PF[p.platform], 5.5, tipAttr(p.title, [p.platform + " · " + timeFmt.format(new Date(p.posted)), fmt(p.views) + " views" + (isStalled(p) ? " · stalled" : "")]));
+    });
+    var best = posts.reduce(function (a, c) { return c.views > a.views ? c : a; });
+    var bx = sx(new Date(best.posted).getTime()), by = sy(best.views);
+    b += '<text class="lbl-strong" x="' + (bx + 10).toFixed(1) + '" y="' + by.toFixed(1) + '" dy="0.35em">' + fmt(best.views) + "</text>";
+    el.innerHTML = svg(W, H, b, "Views per post over time, log scale");
+  }
+
+  function drawScatter(el, posts) {
+    var W = el.clientWidth, H = 260, m = { t: 14, r: 14, b: 38, l: 40 };
+    var maxS = Math.max.apply(null, posts.map(function (p) { return p.secs; })) + 5, minS = 10;
+    var maxV = Math.max.apply(null, posts.map(function (p) { return p.views; })), top = sym(maxV) * 1.12;
+    var sx = function (s) { return m.l + (s - minS) / (maxS - minS) * (W - m.l - m.r); };
+    var sy = function (v) { return H - m.b - sym(v) / top * (H - m.t - m.b); };
+    var b = '<rect x="' + sx(15).toFixed(1) + '" y="' + m.t + '" width="' + (sx(30) - sx(15)).toFixed(1) + '" height="' + (H - m.t - m.b) + '" fill="var(--brand-soft)" opacity="0.7"/>';
+    b += symAxis(maxV, sy, m.l, W - m.r);
+    for (var s = 10; s <= maxS; s += 10) b += '<text x="' + sx(s).toFixed(1) + '" y="' + (H - m.b + 18) + '" text-anchor="middle">' + s + " s</text>";
+    b += '<text x="' + (W - m.r) + '" y="' + (H - 4) + '" text-anchor="end">clip length</text>';
+    posts.slice().sort(function (a, b) { return a.views - b.views; }).forEach(function (p) {
+      b += dotMark(sx(p.secs), sy(p.views), PF[p.platform], 5.5, tipAttr(p.title, [p.platform + " · " + p.secs + " s", fmt(p.views) + " views"]));
+    });
+    el.innerHTML = svg(W, H, b, "Clip length against views");
+  }
+
+  function drawDumbbell(el, groups) {
+    if (!groups.length) { el.innerHTML = '<div class="empty">No edit has gone up on two platforms yet.</div>'; return; }
+    var W = el.clientWidth, rowH = 58, m = { t: 6, r: 22, b: 30, l: 14 }, H = m.t + groups.length * rowH + m.b;
+    var maxV = 0; groups.forEach(function (g) { g.forEach(function (p) { maxV = Math.max(maxV, p.views); }); });
+    var top = sym(Math.max(maxV, 100)) * 1.05;
+    var sx = function (v) { return m.l + sym(v) / top * (W - m.l - m.r); };
+    var b = "";
+    symTicks(Math.max(maxV, 100)).forEach(function (t) {
+      var x = sx(t).toFixed(1);
+      b += '<line class="gridline" x1="' + x + '" x2="' + x + '" y1="' + m.t + '" y2="' + (H - m.b) + '"/><text x="' + x + '" y="' + (H - m.b + 18) + '" text-anchor="middle">' + short(t) + "</text>";
+    });
+    groups.forEach(function (g, i) {
+      var y = m.t + i * rowH + 36, base = g.find(function (p) { return p.platform === "YouTube"; }) || g[0];
+      var title = base.title.replace(/\s*\((Reel|TikTok)\)$/, "");
+      b += '<text class="lbl-strong" x="' + m.l + '" y="' + (y - 18) + '">' + esc(title.length > 52 ? title.slice(0, 50) + "…" : title) + "</text>";
+      var xs = g.map(function (p) { return sx(p.views); });
+      b += '<line class="conn" x1="' + Math.min.apply(null, xs).toFixed(1) + '" x2="' + Math.max.apply(null, xs).toFixed(1) + '" y1="' + y + '" y2="' + y + '"/>';
+      g.slice().sort(function (a, c) { return a.views - c.views; }).forEach(function (p) {
+        b += dotMark(sx(p.views), y, PF[p.platform], 6.5, tipAttr(p.platform, [title, fmt(p.views) + " views"]));
+      });
+      var top1 = g.reduce(function (a, c) { return c.views > a.views ? c : a; });
+      b += '<text class="lbl" x="' + (sx(top1.views) + 11).toFixed(1) + '" y="' + y + '" dy="0.35em">' + fmt(top1.views) + "</text>";
+    });
+    el.innerHTML = svg(W, H, b, "Views for the same edit on different platforms");
+  }
+
+  function drawPools(el, rows) {
+    var W = el.clientWidth, rowH = 62, m = { t: 4, r: 18, b: 30, l: 8 }, H = m.t + rows.length * rowH + m.b;
+    var maxMin = Math.max.apply(null, rows.map(function (r) { return r.c.min_views; }));
+    var top = Math.log10(maxMin) * 1.04;
+    var sx = function (v) { return m.l + (v <= 1 ? 0 : Math.log10(v)) / top * (W - m.l - m.r); };
+    var b = "";
+    for (var e = 0; Math.pow(10, e) <= maxMin; e++) {
+      var x = sx(Math.pow(10, e)).toFixed(1);
+      b += '<line class="gridline" x1="' + x + '" x2="' + x + '" y1="' + m.t + '" y2="' + (H - m.b) + '"/><text x="' + x + '" y="' + (H - m.b + 18) + '" text-anchor="middle">' + short(Math.pow(10, e)) + "</text>";
+    }
+    rows.forEach(function (r, i) {
+      var y = m.t + i * rowH + 26, h = 14;
+      var pct = r.s.sub / r.c.min_views * 100;
+      b += '<text class="lbl-strong" x="' + m.l + '" y="' + (y - 8) + '">' + esc(r.c.name) + '</text><text class="lbl" x="' + (W - m.r) + '" y="' + (y - 8) + '" text-anchor="end">' + esc(r.c.pay) + "</text>";
+      b += '<rect class="track" x="' + m.l + '" y="' + y + '" width="' + (W - m.l - m.r) + '" height="' + h + '" rx="3"/>';
+      var tip = tipAttr(r.c.name, [r.s.n + " posts · " + fmt(r.s.views) + " views", fmt(r.s.sub) + " submitted", "needs " + fmt(r.c.min_views) + " (" + (pct > 0 && pct < 0.01 ? "<0.01" : pct.toFixed(2)) + "% there)"]);
+      if (r.s.views > 1) b += '<rect class="bar-all" x="' + m.l + '" y="' + y + '" width="' + (sx(r.s.views) - m.l).toFixed(1) + '" height="' + h + '" rx="3"/>';
+      if (r.s.sub > 1) b += '<rect class="bar-sub" x="' + m.l + '" y="' + (y + 3) + '" width="' + (sx(r.s.sub) - m.l).toFixed(1) + '" height="' + (h - 6) + '" rx="2"/>';
+      var tx = sx(r.c.min_views).toFixed(1);
+      b += '<line class="target" x1="' + tx + '" x2="' + tx + '" y1="' + (y - 3) + '" y2="' + (y + h + 3) + '"/>';
+      b += '<text x="' + m.l + '" y="' + (y + h + 13) + '">' + (r.s.n ? fmt(r.s.sub) + " submitted of " + short(r.c.min_views) + " needed" : "no posts yet · needs " + short(r.c.min_views)) + "</text>";
+      b += '<rect class="hit" x="' + m.l + '" y="' + (y - 20) + '" width="' + (W - m.l - m.r) + '" height="' + (h + 36) + '"' + tip + "/>";
+    });
+    el.innerHTML = svg(W, H, b, "Pool campaigns: submitted views against the minimum, log scale");
+  }
+
+  function drawClock(el, posts, runs) {
+    var days = []; posts.forEach(function (p) { var k = ymd.format(new Date(p.posted)); if (days.indexOf(k) < 0) days.push(k); });
+    var W = el.clientWidth, rowH = 44, m = { t: 22, r: 14, b: 30, l: W < 520 ? 52 : 86 }, H = m.t + days.length * rowH + m.b;
+    var sx = function (h) { return m.l + h / 24 * (W - m.l - m.r); };
+    var b = "";
+    for (var h = 0; h <= 24; h += W < 520 ? 6 : 3) {
+      var x = sx(h).toFixed(1);
+      b += '<line class="gridline" x1="' + x + '" x2="' + x + '" y1="' + m.t + '" y2="' + (H - m.b) + '"/><text x="' + x + '" y="' + (H - m.b + 18) + '" text-anchor="middle">' + (h < 10 ? "0" : "") + h + ":00</text>";
+    }
+    runs.times.forEach(function (tm, i) {
+      var x = tm.split(":"), rx = sx(+x[0] + x[1] / 60).toFixed(1);
+      b += '<line class="run" x1="' + rx + '" x2="' + rx + '" y1="' + (m.t - 6) + '" y2="' + (H - m.b) + '"/><text class="run-lbl" x="' + rx + '" y="' + (m.t - 10) + '" text-anchor="middle">run ' + tm + "</text>";
+    });
+    days.forEach(function (k, i) {
+      var y = m.t + i * rowH + rowH / 2;
+      var dt = new Date(k + "T12:00:00+01:00");
+      b += '<text class="lbl" x="' + (m.l - 10) + '" y="' + y + '" dy="0.35em" text-anchor="end">' + esc(W < 520 ? dayShort.format(dt) : dayFmt.format(dt)) + "</text>";
+      b += '<line class="baseline" x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + y + '" y2="' + y + '"/>';
+      // nudge posts that land within a few pixels of each other so every dot stays visible
+      var lastX = -99, lane = 0;
+      posts.filter(function (p) { return ymd.format(new Date(p.posted)) === k; }).forEach(function (p) {
+        var c = cetParts(new Date(p.posted)), cx = sx(c.h + c.m / 60);
+        lane = cx - lastX < 9 ? (lane + 1) % 3 : 0; lastX = cx;
+        var cy = y + [0, -9, 9][lane];
+        b += dotMark(cx, cy, PF[p.platform], 5, tipAttr(p.title, [p.platform + " · " + timeFmt.format(new Date(p.posted)), fmt(p.views) + " views"]));
+      });
+    });
+    el.innerHTML = svg(W, H, b, "Upload times by day, CET");
   }
 
   // theme: follows the system until you pick one
   try { var saved = localStorage.getItem("bobelly-theme"); if (saved) document.documentElement.setAttribute("data-theme", saved); } catch (e) {}
   $("theme").addEventListener("click", function () {
-    var cur = document.documentElement.getAttribute("data-theme") ||
-      (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    var cur = document.documentElement.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     var next = cur === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", next);
     try { localStorage.setItem("bobelly-theme", next); } catch (e) {}
   });
 
-  // side nav: highlight the section in view
-  var links = [].slice.call(document.querySelectorAll("#nav a"));
-  if ("IntersectionObserver" in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        links.forEach(function (a) { a.classList.toggle("on", a.getAttribute("href") === "#" + en.target.id); });
-        var on = document.querySelector("#nav a.on");
-        if (on) on.scrollIntoView({ block: "nearest", inline: "nearest" });
-      });
-    }, { rootMargin: "-110px 0px -65% 0px" });
-    links.forEach(function (a) { var t = document.querySelector(a.getAttribute("href")); if (t) io.observe(t); });
-  }
-
   fetch("data.json", { cache: "no-cache" })
     .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
     .then(render)
     .catch(function (e) {
-      $("updated").textContent = "No data";
-      $("kpis").innerHTML = '<div class="kpi err">Couldn’t load data.json (' + esc(e.message) + "). Open the page from its web address, not as a local file.</div>";
+      route();
+      $("stamp").textContent = "No data";
+      $("kpis").innerHTML = '<div class="kpi">Couldn’t load data.json (' + esc(e.message) + "). Open the page from its web address, not as a local file.</div>";
+      console.error(e);
     });
 })();
 </script>
