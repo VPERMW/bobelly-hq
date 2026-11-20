@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-19T23:30:00+01:00",
-  "updated_label": "Thu 19 Nov 2026, 23:30 CET",
+  "updated": "2026-11-20T09:40:00+01:00",
+  "updated_label": "Fri 20 Nov 2026, 09:40 CET",
   "sources": "YouTube Data API and Instagram Graph API (live pull), campaigns/*/posts.md, CLAUDE.md, daily/task.md",
   "channels": [
     {
@@ -16,10 +16,10 @@
         "Tomo"
       ],
       "subscribers": 0,
-      "posts": 9,
+      "posts": 10,
       "stage": 1,
       "limit": "3 Shorts a day, 2 per run, 2 h apart",
-      "note": "3 early Shorts carried it; the 6 later ones are stuck under 10 views."
+      "note": "3 early Shorts carried it; the 7 since are stuck under 10 views, including the unpaid Lacy alligator clip from 00:13 today."
     },
     {
       "key": "deanmor",
@@ -33,10 +33,10 @@
         "YourRAGE"
       ],
       "subscribers": 0,
-      "posts": 1,
+      "posts": 2,
       "stage": 0,
       "limit": "1 Short a day until 26 Nov, then 2",
-      "note": "Day 2. Kept light on purpose so YouTube trusts the channel."
+      "note": "Day 3. One Short a day: the YourRAGE ocean clip went up at 09:32 today."
     },
     {
       "key": "ig-deanmor",
@@ -50,10 +50,10 @@
         "YourRAGE"
       ],
       "subscribers": null,
-      "posts": 1,
+      "posts": 2,
       "stage": 0,
       "limit": "1 Reel a day until 26 Nov, then 2",
-      "note": "Same edit as the dean mor Short. Got 45x the views of the YouTube copy."
+      "note": "Same edits as the dean mor Shorts. Both Reels got 135-144 views; the YouTube copies got 1-4."
     },
     {
       "key": "ig-bobelly",
@@ -107,7 +107,7 @@
       "campaign": "lacy-gta6",
       "posted": "2026-11-18T19:08:37+01:00",
       "secs": 29,
-      "views": 1225,
+      "views": 1227,
       "likes": 23,
       "comments": 1,
       "submitted": "no record",
@@ -242,7 +242,7 @@
       "campaign": "kai-cenat-gta6",
       "posted": "2026-11-19T00:16:49+01:00",
       "secs": 36,
-      "views": 3,
+      "views": 4,
       "likes": 2,
       "comments": 0,
       "submitted": "19 Nov 00:18",
@@ -264,6 +264,53 @@
       "comments": 0,
       "submitted": "19 Nov 00:25",
       "url": "https://www.instagram.com/reel/Df5rS4vgQnX/"
+    },
+    {
+      "id": "Jy5rYj5QTlw",
+      "channel": "bobelly",
+      "platform": "YouTube",
+      "title": "Lacy picks a fight with an alligator in GTA 6",
+      "streamer": "Lacy",
+      "campaign": "unpaid",
+      "posted": "2026-11-20T00:13:41+01:00",
+      "secs": 21,
+      "views": 2,
+      "likes": 0,
+      "comments": 0,
+      "submitted": "unpaid",
+      "url": "https://youtube.com/shorts/Jy5rYj5QTlw"
+    },
+    {
+      "id": "Df8Pb15j4Ma",
+      "thumb": "x6kYJeB8amM",
+      "channel": "ig-deanmor",
+      "platform": "Instagram",
+      "title": "YourRAGE fails his first GTA 6 mission (Reel)",
+      "streamer": "YourRAGE",
+      "campaign": "unpaid",
+      "posted": "2026-11-20T00:17:57+01:00",
+      "secs": 16,
+      "views": 144,
+      "reach": 111,
+      "likes": 0,
+      "comments": 0,
+      "submitted": "unpaid",
+      "url": "https://www.instagram.com/reel/Df8Pb15j4Ma/"
+    },
+    {
+      "id": "x6kYJeB8amM",
+      "channel": "deanmor",
+      "platform": "YouTube",
+      "title": "YourRAGE fails his first GTA 6 mission in the most Florida way",
+      "streamer": "YourRAGE",
+      "campaign": "unpaid",
+      "posted": "2026-11-20T09:32:57+01:00",
+      "secs": 16,
+      "views": 1,
+      "likes": 0,
+      "comments": 0,
+      "submitted": "unpaid",
+      "url": "https://youtube.com/shorts/x6kYJeB8amM"
     }
   ],
   "gone": [
@@ -366,18 +413,7 @@
       "limit": "18 Nov Kick stream only, closes 19 Dec"
     }
   ],
-  "queue": [
-    {
-      "file": "rage_drowns",
-      "title": "YourRAGE fails his first GTA 6 mission in the most Florida way 🌊💀 #yourrage",
-      "campaign": "unpaid",
-      "channel": "dean mor",
-      "moment": "19 Nov",
-      "deadline": "2026-11-21T05:41:00+00:00",
-      "post_at": "2026-11-20T08:05:00+00:00",
-      "state": "Approved, posts at its slot"
-    }
-  ],
+  "queue": [],
   "runs": {
     "times": [
       "16:30",
@@ -401,14 +437,19 @@
       "level": "high"
     },
     {
-      "what": "Turn on the Paid partnership label on the Instagram Reel",
-      "detail": "The API can't set it. Reel: instagram.com/reel/Df5rS4vgQnX",
+      "what": "Decide on the Lacy half-court clip",
+      "detail": "Rendered, but the reviewer rejected it thinking the shooter is Clix (I think it is Lacy). It is IRL, not GTA: check the Lacy pool takes that. Too old after 21 Nov 02:00.",
       "level": "mid"
     },
     {
       "what": "Decide on the Lacy phone clip",
       "detail": "Rendered, scored ~78, on hold because of the bikini shot. Post or drop.",
       "level": "low"
+    },
+    {
+      "what": "Turn on the Paid partnership label on the Instagram Reel",
+      "detail": "The API can't set it. Reel: instagram.com/reel/Df5rS4vgQnX",
+      "level": "mid"
     },
     {
       "what": "Tell me what @bobelly11 on Instagram is for",

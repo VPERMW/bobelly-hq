@@ -396,7 +396,7 @@ footer { font-size: 0.78rem; color: var(--muted); display: grid; gap: 4px; borde
     var posts = d.posts.slice().sort(function (a, b) { return new Date(a.posted) - new Date(b.posted); });
     var chanByKey = {}; d.channels.forEach(function (c) { chanByKey[c.key] = c; });
     var campBySlug = {}; d.campaigns.forEach(function (c) { campBySlug[c.slug] = c; });
-    var isSubmitted = function (p) { return p.submitted && p.submitted !== "no record"; };
+    var isSubmitted = function (p) { return p.submitted && p.submitted !== "no record" && p.submitted !== "unpaid"; };
 
     $("updated").textContent = d.updated_label;
 
@@ -419,8 +419,8 @@ footer { font-size: 0.78rem; color: var(--muted); display: grid; gap: 4px; borde
     if (stuck.length) {
       var a = $("alert");
       a.hidden = false;
-      a.innerHTML = '<span class="tag">Hold</span><p><b>' + stuck.length + " YouTube Shorts have under 50 views after 6+ hours.</b> That includes the latest upload on both channels.</p>" +
-        "<p>The daily run's health check stops posting on a channel when its last upload looks stalled. That is very likely why nothing went up on 19 Nov, and it will keep holding until the cause is found. See the to-do list.</p>";
+      a.innerHTML = '<span class="tag">Hold</span><p><b>' + stuck.length + " YouTube Shorts have under 50 views after 6+ hours.</b> Both YouTube channels count as stalled.</p>" +
+        "<p>A stalled channel still posts, but only 1 clip a day, until its Shorts get views again. YouTube Studio should show why. See the to-do list.</p>";
     }
 
     // Chart
@@ -433,7 +433,7 @@ footer { font-size: 0.78rem; color: var(--muted); display: grid; gap: 4px; borde
       prevDay = day;
       var gap = prev && p.platform === "YouTube" && prev.platform === "YouTube" ? (new Date(p.posted) - new Date(prev.posted)) / 6e4 : null;
       var w = Math.max(0.4, p.views / max * 100);
-      var cls = p.platform === "Instagram" ? "ig" : (p.views < 50 ? "low" : "");
+      var cls = p.platform === "Instagram" ? "ig" : (p.views < 50 && (new Date(d.updated) - new Date(p.posted)) / 36e5 > 6 ? "low" : "");
       var on = w > 40 ? " on" : "";
       rows.push('<div class="bar-row"><div class="when"><span class="num">' + esc(timeFmt.format(new Date(p.posted))) + "</span>" +
         "<small" + (gap != null && gap < 10 ? ' class="gap"' : "") + ">" + (gap != null ? esc(gapText(gap)) : esc(chanByKey[p.channel].name)) + "</small></div>" +
@@ -447,7 +447,7 @@ footer { font-size: 0.78rem; color: var(--muted); display: grid; gap: 4px; borde
     $("notes").innerHTML = '<span class="eyebrow">What it tells us</span><ol>' +
       "<li><b>Three Shorts carried the channel.</b> The Lacy launch-moment clips got 755 to 1,225 views each. They went up 13 to 45 minutes apart, before uploads moved to the command-line tool.</li>" +
       "<li><b>The next six stalled at 1 to 7 views</b> and are still there a day later. Two went up 2 seconds apart and three within 8 minutes. These six also carry <span class=\"mono\">#ad</span> in the description and two run over 40 s. YouTube Studio's traffic sources will show which of these matters.</li>" +
-      "<li><b>Instagram beat YouTube 45 to 1</b> on the same Kai Cenat edit: 135 views and 108 accounts reached, against 3 views on the dean mor Short.</li>" +
+      "<li><b>Instagram keeps beating YouTube.</b> Both dean mor Reels got 135 to 144 views; the same edits on the dean mor channel got 1 to 4.</li>" +
       "<li><b>Most views can't be paid.</b> The three Lacy clips that worked were posted before submitting was part of the routine, and the 30-minute window has passed. Submitted views across all pools: " + fmt(submittedViews) + ".</li>" +
       "</ol>";
 
@@ -482,12 +482,12 @@ footer { font-size: 0.78rem; color: var(--muted); display: grid; gap: 4px; borde
       });
       $("wall").innerHTML = list.map(function (p) {
         var camp = campBySlug[p.campaign];
-        var sub = isSubmitted(p) ? '<span class="pill good">Submitted</span>' : '<span class="pill warn">Not submitted</span>';
-        var low = p.platform === "YouTube" && p.views < 50 ? '<span class="pill bad">Stalled</span>' : "";
+        var sub = !camp ? '<span class="pill plain">Unpaid</span>' : isSubmitted(p) ? '<span class="pill good">Submitted</span>' : '<span class="pill warn">Not submitted</span>';
+        var low = p.platform === "YouTube" && p.views < 50 && new Date(d.updated) - new Date(p.posted) >= 6 * 36e5 ? '<span class="pill bad">Stalled</span>' : "";
         var pf = p.platform === "Instagram" ? '<span class="pill ig">Reel</span>' : '<span class="pill">' + esc(chanByKey[p.channel].name) + "</span>";
         return '<a class="clip" href="' + esc(p.url) + '" target="_blank" rel="noopener"><div class="frame"><img loading="lazy" alt="" src="thumbs/' + esc(p.thumb || p.id) + '.jpg">' +
           '<div class="corner">' + pf + '</div><div class="over"><span class="num">' + fmt(p.views) + '<small> views</small></span><small>' + p.secs + " s · " + esc(ageText(p.posted, d.updated)) + " old</small></div></div>" +
-          '<span class="clip-title">' + esc(p.title) + '</span><div class="clip-meta">' + sub + low + '<span class="pill plain">' + esc(camp ? camp.name.split(" ")[0] : "") + "</span></div></a>";
+          '<span class="clip-title">' + esc(p.title) + '</span><div class="clip-meta">' + sub + low + (camp ? '<span class="pill plain">' + esc(camp.name.split(" ")[0]) + "</span>" : "") + "</div></a>";
       }).join("") || '<p class="muted">No clips match “' + esc(query) + '”.</p>';
     }
     $("filters").addEventListener("click", function (e) {
