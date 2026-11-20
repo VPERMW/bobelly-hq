@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-20T23:04:04+01:00",
-  "updated_label": "Fri 20 Nov 2026, 23:04 CET",
+  "updated": "2026-11-20T23:45:15+01:00",
+  "updated_label": "Fri 20 Nov 2026, 23:45 CET",
   "sources": "YouTube Data API and Instagram Graph API (live pull), Postiz (TikTok), campaigns/*/posts.md, CLAUDE.md, daily/task.md",
   "channels": [
     {
@@ -106,7 +106,7 @@
       "posts": 0,
       "stage": 0,
       "limit": "Same edit as Bobelly's Short, max 1 Reel/day until 27 Nov",
-      "note": "Bobelly's twin since 20 Nov. Not linked in Content Rewards yet."
+      "note": "Bobelly's twin since 20 Nov. Connected in Content Rewards."
     },
     {
       "key": "ig-mako",
@@ -542,11 +542,6 @@
       "what": "Pick music tracks Bobelly has rights to",
       "detail": "Clips go out with voice and sound effects only until then.",
       "level": "low"
-    },
-    {
-      "what": "Link @bobelly11 in Content Rewards",
-      "detail": "Settings -> Accounts. Until then its Reels can't be submitted to campaigns.",
-      "level": "mid"
     }
   ]
 }
