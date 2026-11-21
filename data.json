@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-21T17:39:05+01:00",
-  "updated_label": "Sat 21 Nov 2026, 17:39 CET",
+  "updated": "2026-11-21T18:09:37+01:00",
+  "updated_label": "Sat 21 Nov 2026, 18:09 CET",
   "sources": "YouTube Data API and Instagram Graph API (live pull), Postiz (TikTok), campaigns/*/posts.md, CLAUDE.md, daily/task.md",
   "channels": [
     {
@@ -505,12 +505,12 @@
       "campaign": "unpaid",
       "posted": "2026-11-21T16:50:45+01:00",
       "secs": 13,
-      "views": 185,
-      "likes": 0,
+      "views": 195,
+      "likes": 1,
       "comments": 0,
       "submitted": "unpaid",
       "url": "https://www.instagram.com/reel/DgAj17fjuoY/",
-      "reach": 99
+      "reach": 123
     },
     {
       "id": "XiVA3RMJQME",
@@ -521,11 +521,44 @@
       "campaign": "unpaid",
       "posted": "2026-11-21T17:18:06+01:00",
       "secs": 21,
-      "views": 0,
+      "views": 2,
       "likes": 0,
       "comments": 0,
       "submitted": "unpaid",
       "url": "https://youtube.com/shorts/XiVA3RMJQME"
+    },
+    {
+      "id": "tt-7710662408385120288",
+      "thumb": "XiVA3RMJQME",
+      "channel": "tt-bobelly",
+      "platform": "TikTok",
+      "title": "Lacy watches GTA 6 cops corner a furry (TikTok)",
+      "streamer": "Lacy",
+      "campaign": "unpaid",
+      "posted": "2026-11-21T17:29:00+01:00",
+      "secs": 21,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "submitted": "unpaid",
+      "url": "https://www.tiktok.com/@bobelly111"
+    },
+    {
+      "id": "DgApOfIGUWC",
+      "thumb": "XiVA3RMJQME",
+      "channel": "ig-bobelly",
+      "platform": "Instagram",
+      "title": "Lacy watches GTA 6 cops corner a furry (Reel)",
+      "streamer": "Lacy",
+      "campaign": "unpaid",
+      "posted": "2026-11-21T17:40:23+01:00",
+      "secs": 21,
+      "views": 8,
+      "likes": 0,
+      "comments": 0,
+      "submitted": "unpaid",
+      "url": "https://www.instagram.com/reel/DgApOfIGUWC/",
+      "reach": 4
     }
   ],
   "gone": [
