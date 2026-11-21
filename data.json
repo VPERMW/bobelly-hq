@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-21T05:05:54+01:00",
-  "updated_label": "Sat 21 Nov 2026, 05:05 CET",
+  "updated": "2026-11-21T11:24:36+01:00",
+  "updated_label": "Sat 21 Nov 2026, 11:24 CET",
   "sources": "YouTube Data API and Instagram Graph API (live pull), Postiz (TikTok), campaigns/*/posts.md, CLAUDE.md, daily/task.md",
   "channels": [
     {
@@ -313,8 +313,8 @@
       "campaign": "kai-cenat-gta6",
       "posted": "2026-11-19T00:23:23+01:00",
       "secs": 36,
-      "views": 136,
-      "reach": 108,
+      "views": 140,
+      "reach": 109,
       "likes": 2,
       "comments": 0,
       "submitted": "19 Nov 00:25",
@@ -408,7 +408,7 @@
       "campaign": "unpaid",
       "posted": "2026-11-20T23:59:46+01:00",
       "secs": 21,
-      "views": 0,
+      "views": 2,
       "likes": 0,
       "comments": 0,
       "submitted": "unpaid",
@@ -441,7 +441,7 @@
       "posted": "2026-11-21T02:37:23+01:00",
       "secs": 21,
       "views": 0,
-      "likes": 0,
+      "likes": 1,
       "comments": 0,
       "submitted": "unpaid",
       "url": "https://www.instagram.com/reel/Df_B_QpDq-M/",
