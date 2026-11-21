@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-21T11:24:36+01:00",
-  "updated_label": "Sat 21 Nov 2026, 11:24 CET",
+  "updated": "2026-11-21T13:04:29+01:00",
+  "updated_label": "Sat 21 Nov 2026, 13:04 CET",
   "sources": "YouTube Data API and Instagram Graph API (live pull), Postiz (TikTok), campaigns/*/posts.md, CLAUDE.md, daily/task.md",
   "channels": [
     {
@@ -440,12 +440,12 @@
       "campaign": "unpaid",
       "posted": "2026-11-21T02:37:23+01:00",
       "secs": 21,
-      "views": 0,
+      "views": 1,
       "likes": 1,
       "comments": 0,
       "submitted": "unpaid",
       "url": "https://www.instagram.com/reel/Df_B_QpDq-M/",
-      "reach": 0
+      "reach": 1
     },
     {
       "id": "Df_BkpRCuzw",
@@ -457,11 +457,12 @@
       "campaign": "expedia-ishowspeed",
       "posted": "2026-11-21T02:15:17+01:00",
       "secs": 23,
-      "views": 0,
-      "likes": 0,
+      "views": 159,
+      "likes": 2,
       "comments": 0,
       "submitted": "Jakob by phone",
-      "url": "https://www.instagram.com/reel/Df_BkpRCuzw/"
+      "url": "https://www.instagram.com/reel/Df_BkpRCuzw/",
+      "reach": 131
     }
   ],
   "gone": [
