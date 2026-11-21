@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-21T16:07:08+01:00",
-  "updated_label": "Sat 21 Nov 2026, 16:07 CET",
+  "updated": "2026-11-21T16:37:32+01:00",
+  "updated_label": "Sat 21 Nov 2026, 16:37 CET",
   "sources": "YouTube Data API and Instagram Graph API (live pull), Postiz (TikTok), campaigns/*/posts.md, CLAUDE.md, daily/task.md",
   "channels": [
     {
@@ -463,6 +463,21 @@
       "submitted": "Jakob by phone",
       "url": "https://www.instagram.com/reel/Df_BkpRCuzw/",
       "reach": 132
+    },
+    {
+      "id": "2229nTIDyKs",
+      "channel": "deanmor",
+      "platform": "YouTube",
+      "title": "YourRAGE hits the wrong button in GTA 6 and panics",
+      "streamer": "YourRAGE",
+      "campaign": "unpaid",
+      "posted": "2026-11-21T16:30:07+01:00",
+      "secs": 13,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "submitted": "unpaid",
+      "url": "https://youtube.com/shorts/2229nTIDyKs"
     }
   ],
   "gone": [
