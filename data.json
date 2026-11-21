@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-21T01:46:43+01:00",
-  "updated_label": "Sat 21 Nov 2026, 01:46 CET",
+  "updated": "2026-11-21T03:45:38+01:00",
+  "updated_label": "Sat 21 Nov 2026, 03:45 CET",
   "sources": "YouTube Data API and Instagram Graph API (live pull), Postiz (TikTok), campaigns/*/posts.md, CLAUDE.md, daily/task.md",
   "channels": [
     {
@@ -398,6 +398,54 @@
       "comments": 0,
       "submitted": "unpaid",
       "url": "https://youtube.com/shorts/x6kYJeB8amM"
+    },
+    {
+      "id": "HVVMLjZOkso",
+      "channel": "bobelly",
+      "platform": "YouTube",
+      "title": "Clix pulls off a swamp takeoff in GTA 6",
+      "streamer": "Clix",
+      "campaign": "unpaid",
+      "posted": "2026-11-20T23:59:46+01:00",
+      "secs": 21,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "submitted": "unpaid",
+      "url": "https://youtube.com/shorts/HVVMLjZOkso"
+    },
+    {
+      "id": "tt-7710394558609246241",
+      "thumb": "HVVMLjZOkso",
+      "channel": "tt-bobelly",
+      "platform": "TikTok",
+      "title": "Clix pulls off a swamp takeoff in GTA 6 (TikTok)",
+      "streamer": "Clix",
+      "campaign": "unpaid",
+      "posted": "2026-11-21T00:10:00+01:00",
+      "secs": 21,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "submitted": "unpaid",
+      "url": "https://www.tiktok.com/@bobelly111"
+    },
+    {
+      "id": "Df_B_QpDq-M",
+      "thumb": "HVVMLjZOkso",
+      "channel": "ig-bobelly",
+      "platform": "Instagram",
+      "title": "Clix pulls off a swamp takeoff in GTA 6 (Reel)",
+      "streamer": "Clix",
+      "campaign": "unpaid",
+      "posted": "2026-11-21T02:37:23+01:00",
+      "secs": 21,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "submitted": "unpaid",
+      "url": "https://www.instagram.com/reel/Df_B_QpDq-M/",
+      "reach": 0
     }
   ],
   "gone": [
