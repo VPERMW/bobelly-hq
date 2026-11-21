@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-21T16:37:32+01:00",
-  "updated_label": "Sat 21 Nov 2026, 16:37 CET",
+  "updated": "2026-11-21T17:07:59+01:00",
+  "updated_label": "Sat 21 Nov 2026, 17:07 CET",
   "sources": "YouTube Data API and Instagram Graph API (live pull), Postiz (TikTok), campaigns/*/posts.md, CLAUDE.md, daily/task.md",
   "channels": [
     {
@@ -478,6 +478,39 @@
       "comments": 0,
       "submitted": "unpaid",
       "url": "https://youtube.com/shorts/2229nTIDyKs"
+    },
+    {
+      "id": "tt-7710649992922728480",
+      "thumb": "2229nTIDyKs",
+      "channel": "tt-deanmor",
+      "platform": "TikTok",
+      "title": "YourRAGE hits the wrong button in GTA 6 (TikTok)",
+      "streamer": "YourRAGE",
+      "campaign": "unpaid",
+      "posted": "2026-11-21T16:40:30+01:00",
+      "secs": 13,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "submitted": "unpaid",
+      "url": "https://www.tiktok.com/@dean.mor92"
+    },
+    {
+      "id": "DgAj17fjuoY",
+      "thumb": "2229nTIDyKs",
+      "channel": "ig-deanmor",
+      "platform": "Instagram",
+      "title": "YourRAGE hits the wrong button in GTA 6 (Reel)",
+      "streamer": "YourRAGE",
+      "campaign": "unpaid",
+      "posted": "2026-11-21T16:50:45+01:00",
+      "secs": 13,
+      "views": 29,
+      "likes": 0,
+      "comments": 0,
+      "submitted": "unpaid",
+      "url": "https://www.instagram.com/reel/DgAj17fjuoY/",
+      "reach": 0
     }
   ],
   "gone": [
@@ -582,32 +615,12 @@
   ],
   "queue": [
     {
-      "file": "speed_exp_hk",
-      "title": "Expedia's $10K Hong Kong surprise",
-      "campaign": "expedia-ishowspeed",
-      "channel": "@makoclips.daily",
-      "moment": "6 Nov",
-      "deadline": null,
-      "post_at": "2026-11-20T22:56:22.961512+00:00",
-      "state": "Approved, posts at its slot"
-    },
-    {
-      "file": "clix_swamp",
-      "title": "Clix pulls off a swamp takeoff in GTA 6 ✈️😱 #Clix",
+      "file": "lacy_furry",
+      "title": "Lacy watches GTA 6 cops corner a furry 🐾😂 #LACY",
       "campaign": "unpaid",
       "channel": "Bobelly",
-      "moment": "19 Nov",
-      "deadline": "2026-11-21T13:53:00Z",
-      "post_at": "2026-11-20T22:56:13.292000+00:00",
-      "state": "Approved, posts at its slot"
-    },
-    {
-      "file": "rage_oops",
-      "title": "YourRAGE hits the wrong button in GTA 6 and panics 😭 #yourrage",
-      "campaign": "unpaid",
-      "channel": "dean mor",
-      "moment": "19 Nov",
-      "deadline": "2026-11-22T07:06:00Z",
+      "moment": "20 Nov",
+      "deadline": "2026-11-22T17:13:00Z",
       "post_at": null,
       "state": "Waiting for your OK in Telegram"
     }
