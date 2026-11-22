@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-22T23:21:01+01:00",
-  "updated_label": "Sun 22 Nov 2026, 23:21 CET",
+  "updated": "2026-11-22T23:51:22+01:00",
+  "updated_label": "Sun 22 Nov 2026, 23:51 CET",
   "sources": "YouTube Data API and Instagram Graph API (live pull), Postiz (TikTok), campaigns/*/posts.md, CLAUDE.md, daily/task.md",
   "channels": [
     {
@@ -578,6 +578,22 @@
       "reach": 120
     },
     {
+      "id": "DgD4XywjuhG",
+      "thumb": "DgD4XywjuhG",
+      "channel": "ig-mako",
+      "platform": "Instagram",
+      "title": "Speed thinks he saw Bigfoot in GTA 6 (Reel)",
+      "streamer": "IShowSpeed",
+      "campaign": "unpaid",
+      "posted": "2026-11-22T23:30:04+01:00",
+      "secs": 22,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "submitted": "unpaid",
+      "url": "https://www.instagram.com/reel/DgD4XywjuhG/"
+    },
+    {
       "id": "0B3mh9AScKk",
       "channel": "bobelly",
       "platform": "YouTube",
@@ -728,16 +744,6 @@
   ],
   "queue": [
     {
-      "file": "lacy_restart",
-      "title": "A viewer asked Lacy to restart GTA 6 after 90 hours… so he closed it 😭 #LACY",
-      "campaign": "unpaid",
-      "channel": "Bobelly",
-      "moment": "21 Nov",
-      "deadline": "2026-11-23T21:29:51Z",
-      "post_at": "2026-11-22T13:27:02.743991+00:00",
-      "state": "Approved, posts at its slot"
-    },
-    {
       "file": "rage_atv",
       "title": "YourRAGE sends the ATV in GTA 6 and gets wasted 💀 #yourrage",
       "campaign": "unpaid",
@@ -745,7 +751,17 @@
       "moment": "21 Nov",
       "deadline": "2026-11-23T03:23:06Z",
       "post_at": "2026-11-22T13:27:38.742939+00:00",
-      "state": "Approved, posts at its slot"
+      "state": "Waiting for your OK in Telegram"
+    },
+    {
+      "file": "speed_bigfoot",
+      "title": "Speed thinks he saw Bigfoot in GTA 6 😱",
+      "campaign": "unpaid",
+      "channel": "@makoclips.daily",
+      "moment": "22 Nov",
+      "deadline": "2026-11-24T17:57:52Z",
+      "post_at": null,
+      "state": "Waiting for your OK in Telegram"
     }
   ],
   "runs": {
