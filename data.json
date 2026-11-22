@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-22T03:04:37+01:00",
-  "updated_label": "Sun 22 Nov 2026, 03:04 CET",
+  "updated": "2026-11-22T11:17:18+01:00",
+  "updated_label": "Sun 22 Nov 2026, 11:17 CET",
   "sources": "YouTube Data API and Instagram Graph API (live pull), Postiz (TikTok), campaigns/*/posts.md, CLAUDE.md, daily/task.md",
   "channels": [
     {
@@ -473,7 +473,7 @@
       "campaign": "unpaid",
       "posted": "2026-11-21T16:30:07+01:00",
       "secs": 13,
-      "views": 2,
+      "views": 3,
       "likes": 0,
       "comments": 0,
       "submitted": "unpaid",
@@ -570,12 +570,12 @@
       "campaign": "unpaid",
       "posted": "2026-11-21T23:15:53+01:00",
       "secs": 25,
-      "views": 134,
+      "views": 136,
       "likes": 2,
       "comments": 0,
       "submitted": "unpaid",
       "url": "https://www.instagram.com/reel/DgBR8vtGLlr/",
-      "reach": 117
+      "reach": 119
     }
   ],
   "gone": [
