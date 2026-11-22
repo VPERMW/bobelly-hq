@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-22T14:51:15+01:00",
-  "updated_label": "Sun 22 Nov 2026, 14:51 CET",
+  "updated": "2026-11-22T22:11:17+01:00",
+  "updated_label": "Sun 22 Nov 2026, 22:11 CET",
   "sources": "YouTube Data API and Instagram Graph API (live pull), Postiz (TikTok), campaigns/*/posts.md, CLAUDE.md, daily/task.md",
   "channels": [
     {
@@ -586,11 +586,44 @@
       "campaign": "unpaid",
       "posted": "2026-11-22T14:42:24+01:00",
       "secs": 20,
-      "views": 0,
+      "views": 3,
       "likes": 0,
       "comments": 0,
       "submitted": "unpaid",
       "url": "https://youtube.com/shorts/0B3mh9AScKk"
+    },
+    {
+      "id": "tt-7710993414439077920",
+      "thumb": "0B3mh9AScKk",
+      "channel": "tt-bobelly",
+      "platform": "TikTok",
+      "title": "A viewer asked Lacy to restart GTA 6 after 90 hours… so he closed it (TikTok)",
+      "streamer": "Lacy",
+      "campaign": "unpaid",
+      "posted": "2026-11-22T14:54:00+01:00",
+      "secs": 20,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "submitted": "unpaid",
+      "url": "https://www.tiktok.com/@bobelly111"
+    },
+    {
+      "id": "DgC9TKUDoY_",
+      "thumb": "0B3mh9AScKk",
+      "channel": "ig-bobelly",
+      "platform": "Instagram",
+      "title": "A viewer asked Lacy to restart GTA 6 after 90 hours… so he closed it (Reel)",
+      "streamer": "Lacy",
+      "campaign": "unpaid",
+      "posted": "2026-11-22T15:04:24+01:00",
+      "secs": 20,
+      "views": 241,
+      "likes": 2,
+      "comments": 0,
+      "submitted": "unpaid",
+      "url": "https://www.instagram.com/reel/DgC9TKUDoY_/",
+      "reach": 156
     }
   ],
   "gone": [
