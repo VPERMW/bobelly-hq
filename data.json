@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-22T11:17:18+01:00",
-  "updated_label": "Sun 22 Nov 2026, 11:17 CET",
+  "updated": "2026-11-22T11:47:50+01:00",
+  "updated_label": "Sun 22 Nov 2026, 11:47 CET",
   "sources": "YouTube Data API and Instagram Graph API (live pull), Postiz (TikTok), campaigns/*/posts.md, CLAUDE.md, daily/task.md",
   "channels": [
     {
@@ -575,7 +575,7 @@
       "comments": 0,
       "submitted": "unpaid",
       "url": "https://www.instagram.com/reel/DgBR8vtGLlr/",
-      "reach": 119
+      "reach": 120
     }
   ],
   "gone": [
