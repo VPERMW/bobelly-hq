@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-23T11:31:34+01:00",
-  "updated_label": "Mon 23 Nov 2026, 11:31 CET",
+  "updated": "2026-11-23T15:40:29+01:00",
+  "updated_label": "Mon 23 Nov 2026, 15:40 CET",
   "sources": "YouTube Data API and Instagram Graph API (live pull), Postiz (TikTok), campaigns/*/posts.md, CLAUDE.md, daily/task.md",
   "channels": [
     {
@@ -457,12 +457,12 @@
       "campaign": "expedia-ishowspeed",
       "posted": "2026-11-21T02:15:17+01:00",
       "secs": 23,
-      "views": 160,
+      "views": 161,
       "likes": 2,
       "comments": 0,
       "submitted": "Jakob by phone",
       "url": "https://www.instagram.com/reel/Df_BkpRCuzw/",
-      "reach": 132
+      "reach": 133
     },
     {
       "id": "2229nTIDyKs",
@@ -570,8 +570,8 @@
       "campaign": "unpaid",
       "posted": "2026-11-21T23:15:53+01:00",
       "secs": 25,
-      "views": 136,
-      "likes": 2,
+      "views": 140,
+      "likes": 3,
       "comments": 0,
       "submitted": "unpaid",
       "url": "https://www.instagram.com/reel/DgBR8vtGLlr/",
@@ -587,11 +587,12 @@
       "campaign": "unpaid",
       "posted": "2026-11-22T23:30:04+01:00",
       "secs": 22,
-      "views": 0,
-      "likes": 0,
+      "views": 4,
+      "likes": 1,
       "comments": 0,
       "submitted": "unpaid",
-      "url": "https://www.instagram.com/reel/DgD4XywjuhG/"
+      "url": "https://www.instagram.com/reel/DgD4XywjuhG/",
+      "reach": 2
     },
     {
       "id": "0B3mh9AScKk",
