@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-28T04:23:31+01:00",
-  "updated_label": "Sat 28 Nov 2026, 04:23 CET",
+  "updated": "2026-11-28T13:05:21+01:00",
+  "updated_label": "Sat 28 Nov 2026, 13:05 CET",
   "sources": "YouTube Data API and Instagram Graph API (live pull), Postiz (TikTok), campaigns/*/posts.md, CLAUDE.md, daily/task.md",
   "channels": [
     {
@@ -329,7 +329,7 @@
       "campaign": "unpaid",
       "posted": "2026-11-20T00:13:41+01:00",
       "secs": 21,
-      "views": 2,
+      "views": 3,
       "likes": 0,
       "comments": 0,
       "submitted": "unpaid",
